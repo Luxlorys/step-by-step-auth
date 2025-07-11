@@ -13,6 +13,7 @@ import Members from "./pages/protected/Members";
 import Messaging from "./pages/protected/Messaging";
 import Network from "./pages/protected/Network";
 import Subscriptions from "./pages/protected/Subscriptions";
+import MyProfile from "./pages/protected/MyProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
               <Route path="messaging" element={<Messaging />} />
               <Route path="network" element={<Network />} />
               <Route path="subscriptions" element={<Subscriptions />} />
+              <Route path="my-profile" element={<MyProfile />} />
             </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

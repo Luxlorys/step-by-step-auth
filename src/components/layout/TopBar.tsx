@@ -10,6 +10,7 @@ const getPageTitle = (pathname: string) => {
     '/messaging': 'Messaging & Events',
     '/network': 'Network management',
     '/subscriptions': 'Manage subscriptions',
+    '/my-profile': 'My Profile',
   };
   return titleMap[pathname] || 'Analytics';
 };
@@ -19,9 +20,8 @@ const TopBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleLogout = () => {
-    logout();
-    navigate('/signin');
+  const handleProfile = () => {
+    navigate('/my-profile');
   };
 
   const pageTitle = getPageTitle(location.pathname);
@@ -34,7 +34,7 @@ const TopBar = () => {
       {/* Profile Button */}
       <Button
         variant="outline"
-        onClick={handleLogout}
+        onClick={handleProfile}
         className="flex items-center gap-2 bg-white hover:bg-gray-50"
       >
         <User className="w-4 h-4" />
