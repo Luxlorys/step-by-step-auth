@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 import SignInForm from '@/components/SignInForm';
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSignUp = () => {
-    navigate('/');
+    navigate('/signup');
   };
 
   const handleSignIn = () => {
-    // TODO: Implement sign-in logic
-    console.log('Sign in clicked');
+    login();
+    navigate('/analytics');
   };
 
   return (

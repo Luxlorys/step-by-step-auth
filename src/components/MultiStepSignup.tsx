@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 import { FormData, steps } from '@/types/signup';
 import StepProgress from './signup/StepProgress';
 import ContactDetailsStep from './signup/ContactDetailsStep';
@@ -15,6 +16,7 @@ import PasswordStep from './signup/PasswordStep';
 
 const MultiStepSignup = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -59,6 +61,10 @@ const MultiStepSignup = () => {
   const handleNext = () => {
     if (currentStep < 6) {
       setCurrentStep(currentStep + 1);
+    } else if (currentStep === 6) {
+      // Complete registration and redirect to analytics
+      login();
+      navigate('/analytics');
     }
   };
 
