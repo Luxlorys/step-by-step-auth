@@ -14,6 +14,13 @@ interface FormData {
   websiteUrl: string;
   isOfficialNetwork: boolean;
   uploadedFiles: File[];
+  organizationName: string;
+  country: string;
+  city: string;
+  street: string;
+  postCode: string;
+  vatNumber: string;
+  companyNumber: string;
 }
 
 const steps = [
@@ -32,6 +39,13 @@ const MultiStepSignup = () => {
     websiteUrl: '',
     isOfficialNetwork: false,
     uploadedFiles: [],
+    organizationName: '',
+    country: '',
+    city: '',
+    street: '',
+    postCode: '',
+    vatNumber: '',
+    companyNumber: '',
   });
 
   const handleInputChange = (field: keyof FormData, value: string | boolean | File[]) => {
@@ -249,9 +263,111 @@ const MultiStepSignup = () => {
             )}
 
             {currentStep === 3 && (
-              <div className="py-12 text-center">
-                <h3 className="text-lg font-medium mb-2">Company Details</h3>
-                <p className="text-gray-500">This step will be implemented next.</p>
+              <div className="space-y-4">
+                {/* Organization Name */}
+                <div>
+                  <Label htmlFor="organizationName" className="text-sm font-medium text-gray-700">
+                    Organization name
+                  </Label>
+                  <Input
+                    id="organizationName"
+                    type="text"
+                    placeholder="Enter organization name"
+                    value={formData.organizationName}
+                    onChange={(e) => handleInputChange('organizationName', e.target.value)}
+                    className="mt-1 h-12 border-gray-200 focus:border-black focus:ring-black"
+                  />
+                </div>
+
+                {/* Country and City in one row */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="country" className="text-sm font-medium text-gray-700">
+                      Country
+                    </Label>
+                    <Input
+                      id="country"
+                      type="text"
+                      placeholder="Enter country"
+                      value={formData.country}
+                      onChange={(e) => handleInputChange('country', e.target.value)}
+                      className="mt-1 h-12 border-gray-200 focus:border-black focus:ring-black"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="city" className="text-sm font-medium text-gray-700">
+                      City
+                    </Label>
+                    <Input
+                      id="city"
+                      type="text"
+                      placeholder="Enter city"
+                      value={formData.city}
+                      onChange={(e) => handleInputChange('city', e.target.value)}
+                      className="mt-1 h-12 border-gray-200 focus:border-black focus:ring-black"
+                    />
+                  </div>
+                </div>
+
+                {/* Street */}
+                <div>
+                  <Label htmlFor="street" className="text-sm font-medium text-gray-700">
+                    Street
+                  </Label>
+                  <Input
+                    id="street"
+                    type="text"
+                    placeholder="Enter address"
+                    value={formData.street}
+                    onChange={(e) => handleInputChange('street', e.target.value)}
+                    className="mt-1 h-12 border-gray-200 focus:border-black focus:ring-black"
+                  />
+                </div>
+
+                {/* Post Code */}
+                <div>
+                  <Label htmlFor="postCode" className="text-sm font-medium text-gray-700">
+                    Post code
+                  </Label>
+                  <Input
+                    id="postCode"
+                    type="text"
+                    placeholder="Post code"
+                    value={formData.postCode}
+                    onChange={(e) => handleInputChange('postCode', e.target.value)}
+                    className="mt-1 h-12 border-gray-200 focus:border-black focus:ring-black"
+                  />
+                </div>
+
+                {/* VAT Number and Company Number in one row */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="vatNumber" className="text-sm font-medium text-gray-700">
+                      VAT number
+                    </Label>
+                    <Input
+                      id="vatNumber"
+                      type="text"
+                      placeholder="Enter number"
+                      value={formData.vatNumber}
+                      onChange={(e) => handleInputChange('vatNumber', e.target.value)}
+                      className="mt-1 h-12 border-gray-200 focus:border-black focus:ring-black"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="companyNumber" className="text-sm font-medium text-gray-700">
+                      Company number
+                    </Label>
+                    <Input
+                      id="companyNumber"
+                      type="text"
+                      placeholder="Enter number"
+                      value={formData.companyNumber}
+                      onChange={(e) => handleInputChange('companyNumber', e.target.value)}
+                      className="mt-1 h-12 border-gray-200 focus:border-black focus:ring-black"
+                    />
+                  </div>
+                </div>
               </div>
             )}
 
@@ -294,7 +410,7 @@ const MultiStepSignup = () => {
             </div>
 
             {/* Terms and Privacy */}
-            {currentStep === 2 && (
+            {(currentStep === 2 || currentStep === 3) && (
               <p className="text-xs text-gray-500 text-center mt-4">
                 By continuing, you indicate that you've read and agree to our{' '}
                 <span className="underline cursor-pointer">Term of Service</span> and{' '}
