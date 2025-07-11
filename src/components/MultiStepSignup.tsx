@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
-import { ChevronLeft, Upload, X, Info } from 'lucide-react';
+import { ChevronLeft, Upload, X, Info, Eye, EyeOff } from 'lucide-react';
 
 interface FormData {
   fullName: string;
@@ -21,6 +20,8 @@ interface FormData {
   postCode: string;
   vatNumber: string;
   companyNumber: string;
+  password: string;
+  confirmPassword: string;
 }
 
 const steps = [
@@ -32,6 +33,8 @@ const steps = [
 
 const MultiStepSignup = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
@@ -46,6 +49,8 @@ const MultiStepSignup = () => {
     postCode: '',
     vatNumber: '',
     companyNumber: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const handleInputChange = (field: keyof FormData, value: string | boolean | File[]) => {
@@ -372,9 +377,54 @@ const MultiStepSignup = () => {
             )}
 
             {currentStep === 4 && (
-              <div className="py-12 text-center">
-                <h3 className="text-lg font-medium mb-2">Create Password</h3>
-                <p className="text-gray-500">This step will be implemented next.</p>
+              <div className="space-y-4">
+                {/* Password */}
+                <div>
+                  <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+                    Password
+                  </Label>
+                  <div className="relative mt-1">
+                    <Input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Create password (>8 characters)"
+                      value={formData.password}
+                      onChange={(e) => handleInputChange('password', e.target.value)}
+                      className="h-12 border-gray-200 focus:border-black focus:ring-black pr-12"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    >
+                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Confirm Password */}
+                <div>
+                  <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
+                    Confirm password
+                  </Label>
+                  <div className="relative mt-1">
+                    <Input
+                      id="confirmPassword"
+                      type={showConfirmPassword ? "text" : "password"}
+                      placeholder="Confirm password (>8 characters)"
+                      value={formData.confirmPassword}
+                      onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+                      className="h-12 border-gray-200 focus:border-black focus:ring-black pr-12"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    >
+                      {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
 
@@ -410,7 +460,7 @@ const MultiStepSignup = () => {
             </div>
 
             {/* Terms and Privacy */}
-            {(currentStep === 2 || currentStep === 3) && (
+            {(currentStep === 2 || currentStep === 3 || currentStep === 4) && (
               <p className="text-xs text-gray-500 text-center mt-4">
                 By continuing, you indicate that you've read and agree to our{' '}
                 <span className="underline cursor-pointer">Term of Service</span> and{' '}
