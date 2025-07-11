@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { ChevronLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { FormData, steps } from '@/types/signup';
 import StepProgress from './signup/StepProgress';
 import ContactDetailsStep from './signup/ContactDetailsStep';
@@ -13,6 +14,7 @@ import CompanyDetailsStep from './signup/CompanyDetailsStep';
 import PasswordStep from './signup/PasswordStep';
 
 const MultiStepSignup = () => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -192,6 +194,7 @@ const MultiStepSignup = () => {
               {currentStep === 1 && (
                 <Button
                   variant="outline"
+                  onClick={() => navigate('/signin')}
                   className="flex-1 h-12 border-gray-200 hover:bg-gray-50"
                 >
                   Sign in
