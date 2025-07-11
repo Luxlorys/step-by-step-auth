@@ -28,15 +28,25 @@ const OTPVerificationStep: React.FC<OTPVerificationStepProps> = ({ onOTPChange }
           maxLength={6} 
           value={otp} 
           onChange={handleOTPChange}
-          className="gap-2"
+          className="gap-3"
         >
           <InputOTPGroup>
-            <InputOTPSlot index={0} className="w-12 h-12 text-lg" />
-            <InputOTPSlot index={1} className="w-12 h-12 text-lg" />
-            <InputOTPSlot index={2} className="w-12 h-12 text-lg" />
-            <InputOTPSlot index={3} className="w-12 h-12 text-lg" />
-            <InputOTPSlot index={4} className="w-12 h-12 text-lg" />
-            <InputOTPSlot index={5} className="w-12 h-12 text-lg" />
+            <InputOTPSlot index={0} className="w-12 h-12 text-lg border-2 rounded-lg" />
+          </InputOTPGroup>
+          <InputOTPGroup>
+            <InputOTPSlot index={1} className="w-12 h-12 text-lg border-2 rounded-lg" />
+          </InputOTPGroup>
+          <InputOTPGroup>
+            <InputOTPSlot index={2} className="w-12 h-12 text-lg border-2 rounded-lg" />
+          </InputOTPGroup>
+          <InputOTPGroup>
+            <InputOTPSlot index={3} className="w-12 h-12 text-lg border-2 rounded-lg" />
+          </InputOTPGroup>
+          <InputOTPGroup>
+            <InputOTPSlot index={4} className="w-12 h-12 text-lg border-2 rounded-lg" />
+          </InputOTPGroup>
+          <InputOTPGroup>
+            <InputOTPSlot index={5} className="w-12 h-12 text-lg border-2 rounded-lg" />
           </InputOTPGroup>
         </InputOTP>
       </div>

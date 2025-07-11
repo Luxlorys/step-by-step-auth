@@ -25,7 +25,7 @@ export interface Step {
 
 export const steps: Step[] = [
   { id: 1, title: 'Contact details', description: 'Enter your personal information' },
-  { id: 3, title: 'Network details', description: 'Set up your network preferences' },
-  { id: 4, title: 'Company details', description: 'Add your company information' },
-  { id: 5, title: 'Create password', description: 'Secure your account' },
+  { id: 2, title: 'Network details', description: 'Set up your network preferences' },
+  { id: 3, title: 'Company details', description: 'Add your company information' },
+  { id: 4, title: 'Create password', description: 'Secure your account' },
 ];

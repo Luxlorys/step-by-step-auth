@@ -84,18 +84,6 @@ const MultiStepSignup = () => {
         );
       case 2:
         return (
-          <EmailConfirmationStep 
-            email={formData.email} 
-          />
-        );
-      case 3:
-        return (
-          <OTPVerificationStep 
-            onOTPChange={handleOTPChange} 
-          />
-        );
-      case 4:
-        return (
           <NetworkDetailsStep 
             formData={formData} 
             onInputChange={handleInputChange}
@@ -103,14 +91,14 @@ const MultiStepSignup = () => {
             onRemoveFile={removeFile}
           />
         );
-      case 5:
+      case 3:
         return (
           <CompanyDetailsStep 
             formData={formData} 
             onInputChange={handleInputChange} 
           />
         );
-      case 6:
+      case 4:
         return (
           <PasswordStep 
             formData={formData} 
@@ -121,30 +109,39 @@ const MultiStepSignup = () => {
             onToggleConfirmPassword={() => setShowConfirmPassword(!showConfirmPassword)}
           />
         );
+      case 5:
+        return (
+          <EmailConfirmationStep 
+            email={formData.email} 
+          />
+        );
+      case 6:
+        return (
+          <OTPVerificationStep 
+            onOTPChange={handleOTPChange} 
+          />
+        );
       default:
         return null;
     }
   };
 
   const getButtonText = () => {
-    if (currentStep === 2) return 'Continue';
-    if (currentStep === 3) return 'Submit';
+    if (currentStep === 4) return 'Register';
+    if (currentStep === 5) return 'Continue';
     if (currentStep === 6) return 'Complete';
     return 'Continue';
   };
 
   const isNextDisabled = () => {
     if (currentStep === 1) return !isStep1Valid;
-    if (currentStep === 3) return !isStep3Valid;
+    if (currentStep === 6) return !isStep3Valid;
     return false;
   };
 
   const getProgressStep = () => {
-    if (currentStep === 1) return 1;
-    if (currentStep === 4) return 3;
-    if (currentStep === 5) return 4;
-    if (currentStep === 6) return 5;
-    return currentStep;
+    if (currentStep <= 4) return currentStep;
+    return 4;
   };
 
   return (
@@ -161,8 +158,8 @@ const MultiStepSignup = () => {
           <h1 className="text-sm text-gray-600 mb-6">Sign up {currentStep}</h1>
         </div>
 
-        {/* Progress Steps - Only show for steps 1, 4, 5, 6 */}
-        {(currentStep === 1 || currentStep >= 4) && (
+        {/* Progress Steps - Only show for steps 1-4 */}
+        {currentStep <= 4 && (
           <StepProgress 
             steps={steps} 
             currentStep={getProgressStep()} 
@@ -173,7 +170,7 @@ const MultiStepSignup = () => {
         <Card className="shadow-lg border-0">
           <CardHeader className="pb-6">
             <h2 className="text-2xl font-semibold text-center">
-              {currentStep === 2 || currentStep === 3 ? 'Verification' : 'Sign up'}
+              {currentStep === 5 || currentStep === 6 ? 'Verification' : 'Sign up'}
             </h2>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -181,7 +178,7 @@ const MultiStepSignup = () => {
 
             {/* Navigation Buttons */}
             <div className="flex gap-3 pt-4">
-              {currentStep > 1 && currentStep !== 2 && currentStep !== 3 && (
+              {currentStep > 1 && currentStep !== 5 && currentStep !== 6 && (
                 <Button
                   variant="outline"
                   onClick={handleBack}
@@ -211,7 +208,7 @@ const MultiStepSignup = () => {
             </div>
 
             {/* Terms and Privacy */}
-            {(currentStep === 4 || currentStep === 5 || currentStep === 6) && (
+            {(currentStep === 2 || currentStep === 3 || currentStep === 4) && (
               <p className="text-xs text-gray-500 text-center mt-4">
                 By continuing, you indicate that you've read and agree to our{' '}
                 <span className="underline cursor-pointer">Term of Service</span> and{' '}
