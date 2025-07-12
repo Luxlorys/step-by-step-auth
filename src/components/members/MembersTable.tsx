@@ -1,7 +1,9 @@
-import React from "react";
-import { MoreHorizontal, ChevronDown, Edit, Trash2 } from "lucide-react";
+import React, { useState } from "react";
+import { MoreHorizontal, ChevronDown, Edit, Trash2, X, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Table,
   TableBody,
@@ -11,6 +13,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import {
   Pagination,
   PaginationContent,
   PaginationItem,
@@ -19,11 +29,10 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Member } from "@/utils/mockData";
 
 interface MembersTableProps {
@@ -75,6 +84,51 @@ const MembersTable: React.FC<MembersTableProps> = ({
   onPageChange,
   withTagsDropdown = true,
 }) => {
+  const [editTagsOpen, setEditTagsOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+  const [newTag, setNewTag] = useState("");
+  const [deleteReason, setDeleteReason] = useState("");
+  const [memberTags, setMemberTags] = useState<string[]>([]);
+
+  const handleEditTags = (member: Member) => {
+    setSelectedMember(member);
+    setMemberTags([...member.tags]);
+    setEditTagsOpen(true);
+  };
+
+  const handleDelete = (member: Member) => {
+    setSelectedMember(member);
+    setDeleteOpen(true);
+  };
+
+  const handleAddTag = () => {
+    if (newTag.trim() && !memberTags.includes(newTag.trim())) {
+      setMemberTags([...memberTags, newTag.trim()]);
+      setNewTag("");
+    }
+  };
+
+  const handleRemoveTag = (tagToRemove: string) => {
+    setMemberTags(memberTags.filter(tag => tag !== tagToRemove));
+  };
+
+  const handleSaveEditTags = () => {
+    // Here you would typically update the member's tags
+    console.log("Saving tags for", selectedMember?.email, ":", memberTags);
+    setEditTagsOpen(false);
+    setSelectedMember(null);
+    setMemberTags([]);
+  };
+
+  const handleConfirmDelete = () => {
+    // Here you would typically delete the member
+    console.log("Deleting", selectedMember?.email, "with reason:", deleteReason);
+    setDeleteOpen(false);
+    setSelectedMember(null);
+    setDeleteReason("");
+  };
+
   return (
     <div className="space-y-4">
       {withTagsDropdown && (
@@ -150,23 +204,33 @@ const MembersTable: React.FC<MembersTableProps> = ({
                   {member.joinedDate}
                 </TableCell>
                 <TableCell>
-                  <ContextMenu>
-                    <ContextMenuTrigger asChild>
+                  <Popover>
+                    <PopoverTrigger asChild>
                       <Button variant="ghost" size="sm">
                         <MoreHorizontal className="w-4 h-4" />
                       </Button>
-                    </ContextMenuTrigger>
-                    <ContextMenuContent>
-                      <ContextMenuItem className="flex items-center gap-2">
+                    </PopoverTrigger>
+                    <PopoverContent className="w-40 p-1">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full justify-start gap-2"
+                        onClick={() => handleEditTags(member)}
+                      >
                         <Edit className="w-4 h-4" />
                         Edit tags
-                      </ContextMenuItem>
-                      <ContextMenuItem className="flex items-center gap-2 text-red-600">
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full justify-start gap-2 text-red-600 hover:text-red-700 hover:bg-red-50"
+                        onClick={() => handleDelete(member)}
+                      >
                         <Trash2 className="w-4 h-4" />
                         Delete
-                      </ContextMenuItem>
-                    </ContextMenuContent>
-                  </ContextMenu>
+                      </Button>
+                    </PopoverContent>
+                  </Popover>
                 </TableCell>
               </TableRow>
             ))}
@@ -251,6 +315,106 @@ const MembersTable: React.FC<MembersTableProps> = ({
           </select>
         </div>
       </div>
+
+      {/* Edit Tags Modal */}
+      <Dialog open={editTagsOpen} onOpenChange={setEditTagsOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Edit tags!</DialogTitle>
+            <DialogDescription>
+              {selectedMember?.email}
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div>
+              <h4 className="text-sm font-medium mb-2">Existing tags of this contact</h4>
+              <div className="flex flex-wrap gap-2">
+                {memberTags.map((tag) => (
+                  <Badge
+                    key={tag}
+                    variant="secondary"
+                    className={`${getTagColor(tag)} flex items-center gap-1`}
+                  >
+                    {tag}
+                    <button
+                      onClick={() => handleRemoveTag(tag)}
+                      className="ml-1 hover:bg-black/10 rounded-full p-0.5"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                ))}
+              </div>
+            </div>
+            
+            <div className="flex gap-2">
+              <Input
+                placeholder="Add new tag"
+                value={newTag}
+                onChange={(e) => setNewTag(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleAddTag()}
+              />
+              <Button onClick={handleAddTag} size="sm">
+                <Plus className="w-4 h-4 mr-1" />
+                Add
+              </Button>
+            </div>
+          </div>
+
+          <DialogFooter className="flex gap-2 justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setEditTagsOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSaveEditTags}
+              className="bg-black text-white hover:bg-gray-800"
+            >
+              Save
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation Modal */}
+      <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Decline request!</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium">Decline reason</label>
+              <Textarea
+                placeholder="Write the reason"
+                value={deleteReason}
+                onChange={(e) => setDeleteReason(e.target.value)}
+                className="mt-2"
+              />
+            </div>
+          </div>
+
+          <DialogFooter className="flex gap-2 justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setDeleteOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleConfirmDelete}
+              className="bg-red-50 text-red-600 hover:bg-red-100 border border-red-200"
+            >
+              <X className="w-4 h-4 mr-1" />
+              Decline
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

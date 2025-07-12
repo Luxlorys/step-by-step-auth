@@ -1,8 +1,9 @@
-
-import React from 'react';
-import { MoreHorizontal, ChevronDown, Edit, Trash2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { MoreHorizontal, ChevronDown, Edit, Trash2, X, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Table,
   TableBody,
@@ -12,6 +13,14 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog';
+import {
   Pagination,
   PaginationContent,
   PaginationItem,
@@ -20,11 +29,10 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-} from '@/components/ui/context-menu';
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { MembershipRequest } from '@/utils/membershipRequestsData';
 
 interface RequestsTableProps {
@@ -59,12 +67,73 @@ const getStatusBadge = (status: MembershipRequest['status']) => {
   }
 };
 
+const getTagColor = (tag: string) => {
+  const colors: Record<string, string> = {
+    "Business analysis": "bg-orange-100 text-orange-800",
+    Marketing: "bg-blue-100 text-blue-800",
+    VIP: "bg-green-100 text-green-800", 
+    Management: "bg-yellow-100 text-yellow-800",
+    Tech: "bg-gray-100 text-gray-800",
+    Sales: "bg-purple-100 text-purple-800",
+    Consulting: "bg-cyan-100 text-cyan-800",
+    Finance: "bg-red-100 text-red-800",
+    HR: "bg-pink-100 text-pink-800",
+    Operations: "bg-indigo-100 text-indigo-800",
+  };
+  return colors[tag] || "bg-gray-100 text-gray-800";
+};
+
 const RequestsTable: React.FC<RequestsTableProps> = ({
   requests,
   currentPage,
   totalPages,
   onPageChange,
 }) => {
+  const [editTagsOpen, setEditTagsOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState<MembershipRequest | null>(null);
+  const [newTag, setNewTag] = useState("");
+  const [deleteReason, setDeleteReason] = useState("");
+  const [requestTags, setRequestTags] = useState<string[]>([]);
+
+  const handleEditTags = (request: MembershipRequest) => {
+    setSelectedRequest(request);
+    setRequestTags([...request.tags]);
+    setEditTagsOpen(true);
+  };
+
+  const handleDelete = (request: MembershipRequest) => {
+    setSelectedRequest(request);
+    setDeleteOpen(true);
+  };
+
+  const handleAddTag = () => {
+    if (newTag.trim() && !requestTags.includes(newTag.trim())) {
+      setRequestTags([...requestTags, newTag.trim()]);
+      setNewTag("");
+    }
+  };
+
+  const handleRemoveTag = (tagToRemove: string) => {
+    setRequestTags(requestTags.filter(tag => tag !== tagToRemove));
+  };
+
+  const handleSaveEditTags = () => {
+    // Here you would typically update the request's tags
+    console.log("Saving tags for", selectedRequest?.email, ":", requestTags);
+    setEditTagsOpen(false);
+    setSelectedRequest(null);
+    setRequestTags([]);
+  };
+
+  const handleConfirmDelete = () => {
+    // Here you would typically delete the request
+    console.log("Deleting", selectedRequest?.email, "with reason:", deleteReason);
+    setDeleteOpen(false);
+    setSelectedRequest(null);
+    setDeleteReason("");
+  };
+
   return (
     <div className="space-y-4">
       <div className="border rounded-lg overflow-hidden">
@@ -91,23 +160,33 @@ const RequestsTable: React.FC<RequestsTableProps> = ({
                 <TableCell>{getStatusBadge(request.status)}</TableCell>
                 <TableCell className="text-gray-600">{request.joinedDate}</TableCell>
                 <TableCell>
-                  <ContextMenu>
-                    <ContextMenuTrigger asChild>
+                  <Popover>
+                    <PopoverTrigger asChild>
                       <Button variant="ghost" size="sm">
                         <MoreHorizontal className="w-4 h-4" />
                       </Button>
-                    </ContextMenuTrigger>
-                    <ContextMenuContent>
-                      <ContextMenuItem className="flex items-center gap-2">
+                    </PopoverTrigger>
+                    <PopoverContent className="w-40 p-1">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full justify-start gap-2"
+                        onClick={() => handleEditTags(request)}
+                      >
                         <Edit className="w-4 h-4" />
                         Edit tags
-                      </ContextMenuItem>
-                      <ContextMenuItem className="flex items-center gap-2 text-red-600">
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full justify-start gap-2 text-red-600 hover:text-red-700 hover:bg-red-50"
+                        onClick={() => handleDelete(request)}
+                      >
                         <Trash2 className="w-4 h-4" />
                         Delete
-                      </ContextMenuItem>
-                    </ContextMenuContent>
-                  </ContextMenu>
+                      </Button>
+                    </PopoverContent>
+                  </Popover>
                 </TableCell>
               </TableRow>
             ))}
@@ -186,6 +265,106 @@ const RequestsTable: React.FC<RequestsTableProps> = ({
           </select>
         </div>
       </div>
+
+      {/* Edit Tags Modal */}
+      <Dialog open={editTagsOpen} onOpenChange={setEditTagsOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Edit tags!</DialogTitle>
+            <DialogDescription>
+              {selectedRequest?.fullName}
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div>
+              <h4 className="text-sm font-medium mb-2">Existing tags of this contact</h4>
+              <div className="flex flex-wrap gap-2">
+                {requestTags.map((tag) => (
+                  <Badge
+                    key={tag}
+                    variant="secondary"
+                    className={`${getTagColor(tag)} flex items-center gap-1`}
+                  >
+                    {tag}
+                    <button
+                      onClick={() => handleRemoveTag(tag)}
+                      className="ml-1 hover:bg-black/10 rounded-full p-0.5"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                ))}
+              </div>
+            </div>
+            
+            <div className="flex gap-2">
+              <Input
+                placeholder="Add new tag"
+                value={newTag}
+                onChange={(e) => setNewTag(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleAddTag()}
+              />
+              <Button onClick={handleAddTag} size="sm">
+                <Plus className="w-4 h-4 mr-1" />
+                Add
+              </Button>
+            </div>
+          </div>
+
+          <DialogFooter className="flex gap-2 justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setEditTagsOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSaveEditTags}
+              className="bg-black text-white hover:bg-gray-800"
+            >
+              Save
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation Modal */}
+      <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Decline request!</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium">Decline reason</label>
+              <Textarea
+                placeholder="Write the reason"
+                value={deleteReason}
+                onChange={(e) => setDeleteReason(e.target.value)}
+                className="mt-2"
+              />
+            </div>
+          </div>
+
+          <DialogFooter className="flex gap-2 justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setDeleteOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleConfirmDelete}
+              className="bg-red-50 text-red-600 hover:bg-red-100 border border-red-200"
+            >
+              <X className="w-4 h-4 mr-1" />
+              Decline
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
