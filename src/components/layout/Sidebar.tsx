@@ -1,21 +1,27 @@
-import { NavLink } from 'react-router-dom';
-import { 
-  Home, 
-  BarChart3, 
-  Users, 
-  Settings, 
-  FileText 
-} from 'lucide-react';
+import { NavLink } from "react-router-dom";
+import { Home, BarChart3, Users, Settings, FileText } from "lucide-react";
 
-const navigationItems = [
-  { name: 'Analytics', href: '/analytics', icon: Home },
-  { name: 'Members management', href: '/members', icon: BarChart3 },
-  { name: 'Messaging & Events', href: '/messaging', icon: Users },
-  { name: 'Network management', href: '/network', icon: Settings },
-  { name: 'Manage subscriptions', href: '/subscriptions', icon: FileText },
+const adminNavigationItems = [
+  { name: "View analytics", href: "/analytics", icon: Home },
+  { name: "Members management", href: "/members", icon: BarChart3 },
+  { name: "Messaging & Events", href: "/messaging", icon: Users },
+  { name: "Network management", href: "/network", icon: Settings },
+  { name: "Manage subscriptions", href: "/subscriptions", icon: FileText },
 ];
 
-const Sidebar = () => {
+const superadminNavigationItems = [
+  { name: "Network Analytics", href: "/analytics", icon: Home },
+  { name: "Join request", href: "/join-requests", icon: BarChart3 },
+  { name: "Manage subscriptions", href: "/subscriptions", icon: Users },
+  { name: "Notifications (123)", href: "/notifications", icon: Settings },
+  { name: "Manage networks", href: "/networks", icon: FileText },
+];
+
+interface SidebarProps {
+  isSuperAdmin: boolean;
+}
+
+const Sidebar = ({ isSuperAdmin }: SidebarProps) => {
   return (
     <div className="w-64 bg-black text-white flex flex-col rounded-xl">
       {/* Logo */}
@@ -31,7 +37,10 @@ const Sidebar = () => {
       {/* Navigation */}
       <nav className="flex-1 px-4 py-6">
         <div className="space-y-2">
-          {navigationItems.map((item) => {
+          {(isSuperAdmin
+            ? superadminNavigationItems
+            : adminNavigationItems
+          ).map((item) => {
             const Icon = item.icon;
             return (
               <NavLink
@@ -40,8 +49,8 @@ const Sidebar = () => {
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-gray-800 text-white'
-                      : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                      ? "bg-gray-800 text-white"
+                      : "text-gray-300 hover:text-white hover:bg-gray-800"
                   }`
                 }
               >

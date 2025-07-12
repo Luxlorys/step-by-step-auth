@@ -16,6 +16,9 @@ import Messaging from "./pages/protected/Messaging";
 import Network from "./pages/protected/Network";
 import Subscriptions from "./pages/protected/Subscriptions";
 import MyProfile from "./pages/protected/MyProfile";
+import JoinRequests from "./pages/protected/JoinRequests";
+import Notifications from "./pages/protected/Notifications";
+import Networks from "./pages/protected/Networks";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +45,9 @@ const App = () => (
               <Route path="messaging" element={<Messaging />} />
               <Route path="network" element={<Network />} />
               <Route path="subscriptions" element={<Subscriptions />} />
+              <Route path="join-requests" element={<JoinRequests />} />
+              <Route path="notifications" element={<Notifications />} />
+              <Route path="networks" element={<Networks />} />
               <Route path="my-profile" element={<MyProfile />} />
             </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

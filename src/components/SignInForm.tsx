@@ -8,7 +8,11 @@ interface SignInFormData {
   password: string;
 }
 
-const SignInForm = () => {
+interface SignInFormProps {
+  onFormChange?: (formData: SignInFormData) => void;
+}
+
+const SignInForm = ({ onFormChange }: SignInFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState<SignInFormData>({
     email: '',
@@ -16,7 +20,9 @@ const SignInForm = () => {
   });
 
   const handleInputChange = (field: keyof SignInFormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    const updatedFormData = { ...formData, [field]: value };
+    setFormData(updatedFormData);
+    onFormChange?.(updatedFormData);
   };
 
   return (
@@ -64,3 +70,4 @@ const SignInForm = () => {
 };
 
 export default SignInForm;
+export type { SignInFormData };

@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import SignInForm from '@/components/SignInForm';
+import SignInForm, { SignInFormData } from '@/components/SignInForm';
 
 const SignIn = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [formData, setFormData] = useState<SignInFormData>({ email: '', password: '' });
 
   const handleSignUp = () => {
     navigate('/signup');
   };
 
   const handleSignIn = () => {
-    login();
-    navigate('/analytics');
+    if (formData.email) {
+      login(formData.email);
+      navigate('/analytics');
+    }
+  };
+
+  const handleFormChange = (data: SignInFormData) => {
+    setFormData(data);
   };
 
   return (
@@ -38,7 +45,7 @@ const SignIn = () => {
             <h2 className="text-2xl font-semibold text-center">Sign in</h2>
           </CardHeader>
           <CardContent className="space-y-6">
-            <SignInForm />
+            <SignInForm onFormChange={handleFormChange} />
 
             {/* Navigation Buttons */}
             <div className="flex gap-3 pt-4">
