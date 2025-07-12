@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MoreHorizontal, ChevronDown, Edit, Trash2, X, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -89,12 +90,17 @@ const RequestsTable: React.FC<RequestsTableProps> = ({
   totalPages,
   onPageChange,
 }) => {
+  const navigate = useNavigate();
   const [editTagsOpen, setEditTagsOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState<MembershipRequest | null>(null);
   const [newTag, setNewTag] = useState("");
   const [deleteReason, setDeleteReason] = useState("");
   const [requestTags, setRequestTags] = useState<string[]>([]);
+
+  const handleRowClick = (requestId: string) => {
+    navigate(`/members/${requestId}`);
+  };
 
   const handleEditTags = (request: MembershipRequest) => {
     setSelectedRequest(request);
@@ -154,7 +160,11 @@ const RequestsTable: React.FC<RequestsTableProps> = ({
           </TableHeader>
           <TableBody>
             {requests.map((request) => (
-              <TableRow key={request.id}>
+              <TableRow 
+                key={request.id}
+                className="cursor-pointer hover:bg-gray-50"
+                onClick={() => handleRowClick(request.id)}
+              >
                 <TableCell className="font-medium">{request.fullName}</TableCell>
                 <TableCell>{request.email}</TableCell>
                 <TableCell>{getStatusBadge(request.status)}</TableCell>
@@ -162,7 +172,11 @@ const RequestsTable: React.FC<RequestsTableProps> = ({
                 <TableCell>
                   <Popover>
                     <PopoverTrigger asChild>
-                      <Button variant="ghost" size="sm">
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         <MoreHorizontal className="w-4 h-4" />
                       </Button>
                     </PopoverTrigger>
@@ -171,7 +185,10 @@ const RequestsTable: React.FC<RequestsTableProps> = ({
                         variant="ghost"
                         size="sm"
                         className="w-full justify-start gap-2"
-                        onClick={() => handleEditTags(request)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleEditTags(request);
+                        }}
                       >
                         <Edit className="w-4 h-4" />
                         Edit tags
@@ -180,7 +197,10 @@ const RequestsTable: React.FC<RequestsTableProps> = ({
                         variant="ghost"
                         size="sm"
                         className="w-full justify-start gap-2 text-red-600 hover:text-red-700 hover:bg-red-50"
-                        onClick={() => handleDelete(request)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(request);
+                        }}
                       >
                         <Trash2 className="w-4 h-4" />
                         Delete

@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +11,7 @@ import Index from "./pages/Index";
 import SignIn from "./pages/SignIn";
 import Analytics from "./pages/protected/Analytics";
 import Members from "./pages/protected/Members";
+import MemberDetails from "./pages/protected/MemberDetails";
 import Messaging from "./pages/protected/Messaging";
 import Network from "./pages/protected/Network";
 import Subscriptions from "./pages/protected/Subscriptions";
@@ -36,6 +38,7 @@ const App = () => (
               <Route index element={<Navigate to="/analytics" replace />} />
               <Route path="analytics" element={<Analytics />} />
               <Route path="members" element={<Members />} />
+              <Route path="members/:id" element={<MemberDetails />} />
               <Route path="messaging" element={<Messaging />} />
               <Route path="network" element={<Network />} />
               <Route path="subscriptions" element={<Subscriptions />} />
