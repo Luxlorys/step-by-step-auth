@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { MoreHorizontal, ChevronDown, Edit, Trash2, X, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -84,12 +85,17 @@ const MembersTable: React.FC<MembersTableProps> = ({
   onPageChange,
   withTagsDropdown = true,
 }) => {
+  const navigate = useNavigate();
   const [editTagsOpen, setEditTagsOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
   const [newTag, setNewTag] = useState("");
   const [deleteReason, setDeleteReason] = useState("");
   const [memberTags, setMemberTags] = useState<string[]>([]);
+
+  const handleRowClick = (memberId: string) => {
+    navigate(`/members/${memberId}`);
+  };
 
   const handleEditTags = (member: Member) => {
     setSelectedMember(member);
@@ -176,7 +182,11 @@ const MembersTable: React.FC<MembersTableProps> = ({
           </TableHeader>
           <TableBody>
             {members.map((member) => (
-              <TableRow key={member.id}>
+              <TableRow 
+                key={member.id}
+                className="cursor-pointer hover:bg-gray-50"
+                onClick={() => handleRowClick(member.id)}
+              >
                 <TableCell className="font-medium">{member.email}</TableCell>
                 <TableCell>
                   <div className="flex flex-wrap gap-1">
@@ -206,7 +216,11 @@ const MembersTable: React.FC<MembersTableProps> = ({
                 <TableCell>
                   <Popover>
                     <PopoverTrigger asChild>
-                      <Button variant="ghost" size="sm">
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         <MoreHorizontal className="w-4 h-4" />
                       </Button>
                     </PopoverTrigger>
@@ -215,7 +229,10 @@ const MembersTable: React.FC<MembersTableProps> = ({
                         variant="ghost"
                         size="sm"
                         className="w-full justify-start gap-2"
-                        onClick={() => handleEditTags(member)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleEditTags(member);
+                        }}
                       >
                         <Edit className="w-4 h-4" />
                         Edit tags
@@ -224,7 +241,10 @@ const MembersTable: React.FC<MembersTableProps> = ({
                         variant="ghost"
                         size="sm"
                         className="w-full justify-start gap-2 text-red-600 hover:text-red-700 hover:bg-red-50"
-                        onClick={() => handleDelete(member)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(member);
+                        }}
                       >
                         <Trash2 className="w-4 h-4" />
                         Delete

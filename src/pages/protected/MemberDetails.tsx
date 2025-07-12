@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -58,11 +58,11 @@ const MemberDetails = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen p-6">
-      <div className="max-w-4xl mx-auto space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="bg-white p-6 relative min-h-full">
+      <div className="flex flex-col">
+        <div className="flex flex-row gap-6">
           {/* User Info Block */}
-          <Card>
+          <Card className="bg-[#FAFAFA] border-[#E2E8F0]">
             <CardHeader>
               <CardTitle>User Info</CardTitle>
             </CardHeader>
@@ -83,7 +83,7 @@ const MemberDetails = () => {
           </Card>
 
           {/* Additional Info Block */}
-          <Card>
+          <Card className="bg-[#FAFAFA] border-[#E2E8F0]">
             <CardHeader>
               <CardTitle>Additional Info</CardTitle>
             </CardHeader>
@@ -121,24 +121,24 @@ const MemberDetails = () => {
             </CardContent>
           </Card>
         </div>
+      </div>
 
-        {/* Action Buttons */}
-        <div className="flex justify-end space-x-3">
-          <Button
-            variant="outline"
-            onClick={handleDelete}
-            className="text-red-600 border-red-200 hover:bg-red-50"
-          >
-            <X className="w-4 h-4 mr-2" />
-            Decline
-          </Button>
-          <Button
-            onClick={handleApprove}
-            className="bg-black text-white hover:bg-gray-800"
-          >
-            Approve request
-          </Button>
-        </div>
+      {/* Action Buttons */}
+      <div className="fixed bottom-6 right-6 flex space-x-3 z-10">
+        <Button
+          variant="outline"
+          onClick={handleDelete}
+          className="text-red-600 border-red-200 hover:bg-red-50"
+        >
+          <X className="w-4 h-4 mr-2" />
+          Delete
+        </Button>
+        <Button
+          onClick={handleApprove}
+          className="bg-black text-white hover:bg-gray-800"
+        >
+          Approve request
+        </Button>
       </div>
 
       {/* Delete Confirmation Modal */}

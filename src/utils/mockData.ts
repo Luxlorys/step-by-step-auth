@@ -42,7 +42,7 @@ const generateRandomTags = () => {
 // Generate mock members data
 export const generateMockMembers = (count: number): Member[] => {
   return Array.from({ length: count }, (_, index) => ({
-    id: `member-${index + 1}`,
+    id: `${index + 1}`,
     email: generateRandomEmail(),
     tags: generateRandomTags(),
     status: statusOptions[Math.floor(Math.random() * statusOptions.length)],
