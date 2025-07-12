@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import InvitingMembersTab from '@/components/members/InvitingMembersTab';
 import MembershipRequestsTab from '@/components/members/MembershipRequestsTab';
@@ -9,19 +11,31 @@ const Members = () => {
   return (
     <div className="bg-white">
       <Tabs defaultValue="inviting" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 max-w-md">
-          <TabsTrigger value="inviting" className="text-sm">
-            Inviting members
-          </TabsTrigger>
-          <TabsTrigger value="requests" className="text-sm">
-            Membership requests
-          </TabsTrigger>
-          <TabsTrigger value="all" className="text-sm">
-            All members
-          </TabsTrigger>
-        </TabsList>
+        <div className="flex items-center justify-between mb-6">
+          <TabsList className="grid grid-cols-3 max-w-2xl gap-4">
+            <TabsTrigger value="inviting" className="text-sm px-6">
+              Inviting members
+            </TabsTrigger>
+            <TabsTrigger value="requests" className="text-sm px-6">
+              Membership requests
+            </TabsTrigger>
+            <TabsTrigger value="all" className="text-sm px-6">
+              All members
+            </TabsTrigger>
+          </TabsList>
+          
+          <div className="flex items-center space-x-3">
+            <Button variant="outline" className="flex items-center space-x-2">
+              <Download className="w-4 h-4" />
+              <span>Download Template</span>
+            </Button>
+            <Button className="bg-black text-white hover:bg-gray-800">
+              Save
+            </Button>
+          </div>
+        </div>
         
-        <div className="mt-6">
+        <div>
           <TabsContent value="inviting" className="mt-0">
             <InvitingMembersTab />
           </TabsContent>

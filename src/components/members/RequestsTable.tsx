@@ -19,77 +19,54 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import { Member } from '@/utils/mockData';
+import { MembershipRequest } from '@/utils/membershipRequestsData';
 
-interface MembersTableProps {
-  members: Member[];
+interface RequestsTableProps {
+  requests: MembershipRequest[];
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
 }
 
-const getTagColor = (tag: string) => {
-  const colors: Record<string, string> = {
-    'Business analysis': 'bg-orange-100 text-orange-800',
-    'Marketing': 'bg-blue-100 text-blue-800',
-    'VIP': 'bg-green-100 text-green-800',
-    'Management': 'bg-yellow-100 text-yellow-800',
-    'Tech': 'bg-gray-100 text-gray-800',
-    'Sales': 'bg-purple-100 text-purple-800',
-    'Consulting': 'bg-cyan-100 text-cyan-800',
-    'Finance': 'bg-red-100 text-red-800',
-    'HR': 'bg-pink-100 text-pink-800',
-    'Operations': 'bg-indigo-100 text-indigo-800'
-  };
-  return colors[tag] || 'bg-gray-100 text-gray-800';
+const getStatusBadge = (status: MembershipRequest['status']) => {
+  switch (status) {
+    case 'Approved':
+      return (
+        <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+          Approved
+        </Badge>
+      );
+    case 'Awaiting approval':
+      return (
+        <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200">
+          Awaiting approval
+        </Badge>
+      );
+    case 'Declined':
+      return (
+        <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">
+          Declined
+        </Badge>
+      );
+    default:
+      return null;
+  }
 };
 
-const getStatusBadge = (status: Member['status']) => {
-  return status === 'Joined' ? (
-    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-      Joined
-    </Badge>
-  ) : (
-    <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200">
-      Invited
-    </Badge>
-  );
-};
-
-const MembersTable: React.FC<MembersTableProps> = ({
-  members,
+const RequestsTable: React.FC<RequestsTableProps> = ({
+  requests,
   currentPage,
   totalPages,
   onPageChange,
 }) => {
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <h3 className="text-lg font-semibold">
-            Members List <span className="text-gray-500">({members.length} ppl)</span>
-          </h3>
-        </div>
-        <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-600">Tags</span>
-          <Button variant="outline" size="sm" className="flex items-center space-x-1">
-            <span>All</span>
-            <ChevronDown className="w-4 h-4" />
-          </Button>
-        </div>
-      </div>
-
       <div className="border rounded-lg overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow className="bg-gray-50">
+              <TableHead className="font-semibold">Full name</TableHead>
               <TableHead className="font-semibold">Email</TableHead>
-              <TableHead className="font-semibold">
-                <div className="flex items-center space-x-1">
-                  <span>Tags</span>
-                  <ChevronDown className="w-4 h-4" />
-                </div>
-              </TableHead>
               <TableHead className="font-semibold">
                 <div className="flex items-center space-x-1">
                   <span>Status</span>
@@ -101,29 +78,12 @@ const MembersTable: React.FC<MembersTableProps> = ({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {members.map((member) => (
-              <TableRow key={member.id}>
-                <TableCell className="font-medium">{member.email}</TableCell>
-                <TableCell>
-                  <div className="flex flex-wrap gap-1">
-                    {member.tags.slice(0, 3).map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="secondary"
-                        className={`text-xs ${getTagColor(tag)}`}
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                    {member.tags.length > 3 && (
-                      <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-600">
-                        +{member.tags.length - 3}
-                      </Badge>
-                    )}
-                  </div>
-                </TableCell>
-                <TableCell>{getStatusBadge(member.status)}</TableCell>
-                <TableCell className="text-gray-600">{member.joinedDate}</TableCell>
+            {requests.map((request) => (
+              <TableRow key={request.id}>
+                <TableCell className="font-medium">{request.fullName}</TableCell>
+                <TableCell>{request.email}</TableCell>
+                <TableCell>{getStatusBadge(request.status)}</TableCell>
+                <TableCell className="text-gray-600">{request.joinedDate}</TableCell>
                 <TableCell>
                   <Button variant="ghost" size="sm">
                     <MoreHorizontal className="w-4 h-4" />
@@ -210,4 +170,4 @@ const MembersTable: React.FC<MembersTableProps> = ({
   );
 };
 
-export default MembersTable;
+export default RequestsTable;
