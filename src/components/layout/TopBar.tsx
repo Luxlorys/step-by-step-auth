@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -27,7 +28,7 @@ const TopBar = () => {
   const pageTitle = getPageTitle(location.pathname);
 
   return (
-    <div className="h-16 bg-white rounded-xl flex items-center justify-between px-6">
+    <div className="h-16 bg-white rounded-xl flex items-center justify-between px-6 flex-shrink-0">
       {/* Title */}
       <h1 className="text-xl font-semibold text-gray-800">{pageTitle}</h1>
 

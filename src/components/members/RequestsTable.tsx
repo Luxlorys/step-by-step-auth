@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { MoreHorizontal, ChevronDown } from 'lucide-react';
+import { MoreHorizontal, ChevronDown, Edit, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -19,6 +19,12 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from '@/components/ui/context-menu';
 import { MembershipRequest } from '@/utils/membershipRequestsData';
 
 interface RequestsTableProps {
@@ -85,9 +91,23 @@ const RequestsTable: React.FC<RequestsTableProps> = ({
                 <TableCell>{getStatusBadge(request.status)}</TableCell>
                 <TableCell className="text-gray-600">{request.joinedDate}</TableCell>
                 <TableCell>
-                  <Button variant="ghost" size="sm">
-                    <MoreHorizontal className="w-4 h-4" />
-                  </Button>
+                  <ContextMenu>
+                    <ContextMenuTrigger asChild>
+                      <Button variant="ghost" size="sm">
+                        <MoreHorizontal className="w-4 h-4" />
+                      </Button>
+                    </ContextMenuTrigger>
+                    <ContextMenuContent>
+                      <ContextMenuItem className="flex items-center gap-2">
+                        <Edit className="w-4 h-4" />
+                        Edit tags
+                      </ContextMenuItem>
+                      <ContextMenuItem className="flex items-center gap-2 text-red-600">
+                        <Trash2 className="w-4 h-4" />
+                        Delete
+                      </ContextMenuItem>
+                    </ContextMenuContent>
+                  </ContextMenu>
                 </TableCell>
               </TableRow>
             ))}
