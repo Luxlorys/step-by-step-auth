@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Filter, Calendar, Info, Users, Bell, Mail } from 'lucide-react';
@@ -76,7 +77,7 @@ const dayTimeData = [
   { day: 'Sun', time: 'EVE', slot: '21-22', count: 28, color: '#3b82f6' },
 ];
 
-// Mock data for host events participants
+// Mock data for host events participants (reduced to 4 for better fit)
 const mockParticipants = [
   {
     id: '1',
@@ -90,8 +91,8 @@ const mockParticipants = [
   },
   {
     id: '2',
-    name: 'Sarah Williams',
-    email: 'sarah@example.com',
+    name: 'John Smith',
+    email: 'john@example.com',
     avatar: '',
     notificationStatus: 'Clicked',
     invitationResponse: 'Declined',
@@ -100,49 +101,29 @@ const mockParticipants = [
   },
   {
     id: '3',
-    name: 'Sarah Williams',
-    email: 'sarah@example.com',
+    name: 'Emily Johnson',
+    email: 'emily@example.com',
     avatar: '',
     notificationStatus: 'Clicked',
     invitationResponse: 'Accepted',
-    rating: 4,
-    feedback: 'Great event! Very informative sessions.'
+    rating: 5,
+    feedback: 'Excellent networking opportunities!'
   },
   {
     id: '4',
-    name: 'Sarah Williams',
-    email: 'sarah@example.com',
+    name: 'Michael Brown',
+    email: 'michael@example.com',
     avatar: '',
     notificationStatus: 'Not clicked',
     invitationResponse: 'Declined',
     rating: 3,
-    feedback: 'Great event! Very informative sessions.'
-  },
-  {
-    id: '5',
-    name: 'Sarah Williams',
-    email: 'sarah@example.com',
-    avatar: '',
-    notificationStatus: 'Clicked',
-    invitationResponse: 'Accepted',
-    rating: 0,
-    feedback: 'No feedback'
-  },
-  {
-    id: '6',
-    name: 'Sarah Williams',
-    email: 'sarah@example.com',
-    avatar: '',
-    notificationStatus: 'Not clicked',
-    invitationResponse: 'Accepted',
-    rating: 2,
-    feedback: 'Great event! Very informative sessions.'
+    feedback: 'Good content but timing was not ideal.'
   }
 ];
 
 const Analytics = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 4;
   
   // Mock data for metric cards
   const activeSubscriptions = 3475;
@@ -226,7 +207,7 @@ const Analytics = () => {
             {/* Metric Cards Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Active Subscriptions */}
-              <Card className="p-4">
+              <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="pb-2 px-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
@@ -255,7 +236,7 @@ const Analytics = () => {
               </Card>
 
               {/* New Subscriptions */}
-              <Card className="p-4">
+              <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="pb-2 px-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium text-gray-600">Subscription</CardTitle>
@@ -285,7 +266,7 @@ const Analytics = () => {
               </Card>
 
               {/* Notification CTR */}
-              <Card className="p-4">
+              <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="pb-2 px-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
@@ -314,7 +295,7 @@ const Analytics = () => {
               </Card>
 
               {/* Invitations */}
-              <Card className="p-4">
+              <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="pb-2 px-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
@@ -357,7 +338,7 @@ const Analytics = () => {
             </div>
 
             {/* Chart Section */}
-            <Card className="p-6">
+            <Card className="p-6 bg-[#FCFCFC] border-[#E5E6E8]">
               <CardHeader className="px-0 pt-0">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-6">
@@ -393,7 +374,7 @@ const Analytics = () => {
                       axisLine={false}
                     />
                     <ChartTooltip 
-                      content={<ChartTooltipContent />}
+                      content={<ChartTooltipContent className="p-3" />}
                       cursor={{ stroke: '#e5e7eb', strokeWidth: 1 }}
                     />
                     <Line
@@ -401,7 +382,7 @@ const Analytics = () => {
                       dataKey="activeSubscriptions"
                       stroke="#D03801"
                       strokeWidth={2}
-                      dot={{ fill: '#D03801', strokeWidth: 2, r: 4 }}
+                      dot={false}
                       activeDot={{ r: 6, fill: '#D03801' }}
                     />
                     <Line
@@ -409,7 +390,7 @@ const Analytics = () => {
                       dataKey="newSubscriptions"
                       stroke="#014737"
                       strokeWidth={2}
-                      dot={{ fill: '#014737', strokeWidth: 2, r: 4 }}
+                      dot={false}
                       activeDot={{ r: 6, fill: '#014737' }}
                     />
                     <Line
@@ -417,7 +398,7 @@ const Analytics = () => {
                       dataKey="unsubscribes"
                       stroke="#951F21"
                       strokeWidth={2}
-                      dot={{ fill: '#951F21', strokeWidth: 2, r: 4 }}
+                      dot={false}
                       activeDot={{ r: 6, fill: '#951F21' }}
                     />
                   </LineChart>
@@ -430,7 +411,7 @@ const Analytics = () => {
             {/* Meetup Metric Cards Row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Total Meetups */}
-              <Card className="p-4">
+              <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="pb-2 px-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
@@ -459,7 +440,7 @@ const Analytics = () => {
               </Card>
 
               {/* Average Meetup Length */}
-              <Card className="p-4">
+              <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="pb-2 px-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
@@ -488,7 +469,7 @@ const Analytics = () => {
               </Card>
 
               {/* Cancelled Meetups */}
-              <Card className="p-4">
+              <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="pb-2 px-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
@@ -520,7 +501,7 @@ const Analytics = () => {
             {/* Charts Row */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Popular Meetup Topics Chart */}
-              <Card className="p-6">
+              <Card className="p-6 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="px-0 pt-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-lg font-semibold flex items-center gap-2">
@@ -559,20 +540,6 @@ const Analytics = () => {
                         tickLine={false}
                         axisLine={false}
                       />
-                      <Tooltip 
-                        content={({ active, payload }) => {
-                          if (active && payload && payload.length) {
-                            const data = payload[0].payload;
-                            return (
-                              <div className="bg-white p-2 border rounded shadow">
-                                {data.topic && <p className="font-medium">{data.topic}</p>}
-                                <p>Count: {data.y}</p>
-                              </div>
-                            );
-                          }
-                          return null;
-                        }}
-                      />
                       <Scatter 
                         dataKey="y" 
                         fill="#3b82f6"
@@ -598,7 +565,7 @@ const Analytics = () => {
               </Card>
 
               {/* Popular Day & Times Chart */}
-              <Card className="p-6">
+              <Card className="p-6 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="px-0 pt-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-lg font-semibold flex items-center gap-2">
@@ -673,7 +640,7 @@ const Analytics = () => {
             </div>
 
             {/* Geographic Hotspots */}
-            <Card className="p-6">
+            <Card className="p-6 bg-[#FCFCFC] border-[#E5E6E8]">
               <CardHeader className="px-0 pt-0">
                 <CardTitle className="text-lg font-semibold">Geographic Hotspots</CardTitle>
               </CardHeader>
@@ -705,11 +672,11 @@ const Analytics = () => {
             </Card>
           </TabsContent>
           
-          <TabsContent value="events" className="mt-0 space-y-6">
+          <TabsContent value="events" className="mt-0 space-y-4">
             {/* Host Events Metric Cards Row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Host Events */}
-              <Card className="p-4">
+              <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="pb-2 px-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
@@ -738,7 +705,7 @@ const Analytics = () => {
               </Card>
 
               {/* Invitation Acceptance Rate */}
-              <Card className="p-4">
+              <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="pb-2 px-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
@@ -767,7 +734,7 @@ const Analytics = () => {
               </Card>
 
               {/* Average Event Rating */}
-              <Card className="p-4">
+              <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
                 <CardHeader className="pb-2 px-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
@@ -797,17 +764,29 @@ const Analytics = () => {
             </div>
 
             {/* Event Details Section */}
-            <Card className="p-6">
-              <CardHeader className="px-0 pt-0 pb-4">
+            <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
+              <CardHeader className="px-0 pt-0 pb-3">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg font-semibold">Annual Tech Conference</CardTitle>
                   <div className="flex items-center gap-4">
-                    <span className="text-sm text-gray-500">1 - 12</span>
+                    <span className="text-sm text-gray-500">1 - 4</span>
                     <div className="flex items-center gap-1">
-                      <Button variant="outline" size="sm" className="h-8 w-8 p-0">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="h-8 w-8 p-0"
+                        onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                        disabled={currentPage === 1}
+                      >
                         ‹
                       </Button>
-                      <Button variant="outline" size="sm" className="h-8 w-8 p-0">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="h-8 w-8 p-0"
+                        onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                        disabled={currentPage === totalPages}
+                      >
                         ›
                       </Button>
                     </div>
@@ -850,15 +829,15 @@ const Analytics = () => {
                       <TableRow key={participant.id} className="border-b">
                         <TableCell>
                           <div className="flex items-center gap-3">
-                            <Avatar className="h-10 w-10">
+                            <Avatar className="h-8 w-8">
                               <AvatarImage src={participant.avatar} alt={participant.name} />
-                              <AvatarFallback className="bg-purple-500 text-white">
+                              <AvatarFallback className="bg-purple-500 text-white text-sm">
                                 {participant.name.split(' ').map(n => n[0]).join('')}
                               </AvatarFallback>
                             </Avatar>
                             <div>
-                              <div className="font-medium text-gray-900">{participant.name}</div>
-                              <div className="text-sm text-gray-500">{participant.email}</div>
+                              <div className="font-medium text-gray-900 text-sm">{participant.name}</div>
+                              <div className="text-xs text-gray-500">{participant.email}</div>
                             </div>
                           </div>
                         </TableCell>
@@ -904,12 +883,12 @@ const Analytics = () => {
                 </Table>
 
                 {/* Table Footer with Stats */}
-                <div className="flex items-center justify-between mt-6 pt-4 border-t">
+                <div className="flex items-center justify-between mt-4 pt-3 border-t">
                   <div className="flex items-center gap-8 text-sm">
-                    <span><strong>Total Participants:</strong> 6</span>
-                    <span><strong>Click rate:</strong> 67%</span>
-                    <span><strong>Acceptance rate:</strong> 37%</span>
-                    <span><strong>Avg rate:</strong> 4.2</span>
+                    <span><strong>Total Participants:</strong> 4</span>
+                    <span><strong>Click rate:</strong> 75%</span>
+                    <span><strong>Acceptance rate:</strong> 50%</span>
+                    <span><strong>Avg rate:</strong> 4.0</span>
                   </div>
                 </div>
               </CardContent>
