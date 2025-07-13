@@ -63,7 +63,7 @@ const MultiStepSignup = () => {
       setCurrentStep(currentStep + 1);
     } else if (currentStep === 6) {
       // Complete registration and redirect to analytics
-      login();
+      login(formData.email);
       navigate('/analytics');
     }
   };
