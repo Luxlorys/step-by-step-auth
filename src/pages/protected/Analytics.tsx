@@ -462,7 +462,6 @@ const Analytics = () => {
                         axisLine={false}
                       />
                       <Tooltip 
-                        cursor={{ strokeDasharray: '3 3' }}
                         content={({ active, payload }) => {
                           if (active && payload && payload.length) {
                             const data = payload[0].payload;
