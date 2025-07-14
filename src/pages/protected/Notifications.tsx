@@ -164,8 +164,7 @@ const Notifications = () => {
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-between mt-4">
-        <div></div>
+      <div className="flex items-center justify-start mt-4">
         <div className="flex items-center gap-2">
           <Button
             variant="outline"
@@ -173,7 +172,7 @@ const Notifications = () => {
             onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
           >
-            Previous
+            ‹
           </Button>
           
           {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
@@ -194,12 +193,30 @@ const Notifications = () => {
                 variant={currentPage === pageNum ? "default" : "outline"}
                 size="sm"
                 onClick={() => setCurrentPage(pageNum)}
-                className="w-8 h-8 p-0"
+                className={`w-8 h-8 p-0 ${
+                  currentPage === pageNum 
+                    ? "bg-black text-white hover:bg-black/90" 
+                    : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
+                }`}
               >
                 {pageNum}
               </Button>
             );
           })}
+          
+          {totalPages > 5 && currentPage < totalPages - 2 && (
+            <>
+              <span className="px-2 text-gray-500">...</span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage(totalPages)}
+                className="w-8 h-8 p-0 bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
+              >
+                {totalPages}
+              </Button>
+            </>
+          )}
           
           <Button
             variant="outline"
@@ -207,20 +224,8 @@ const Notifications = () => {
             onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
             disabled={currentPage === totalPages}
           >
-            Next
+            ›
           </Button>
-          
-          <div className="flex items-center gap-2 ml-4">
-            <span className="text-sm text-gray-600">Showing</span>
-            <select 
-              value={itemsPerPage}
-              className="border border-gray-300 rounded px-2 py-1 text-sm"
-            >
-              <option value={6}>6</option>
-              <option value={8}>8</option>
-              <option value={10}>10</option>
-            </select>
-          </div>
         </div>
       </div>
     </div>
