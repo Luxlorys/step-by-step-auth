@@ -177,9 +177,7 @@ const MultiStepSignup = () => {
             </div>
             <span className="font-semibold text-lg">YouInTown</span>
           </div>
-          <h1 className="text-sm text-gray-600 mb-6">Sign up {currentStep}</h1>
         </div>
-
         {/* Progress Steps - Only show for steps 1-5 (but not EstimatedCost step 4) */}
         {currentStep <= 5 && currentStep !== 4 && (
           <StepProgress 

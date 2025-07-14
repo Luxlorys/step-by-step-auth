@@ -29,7 +29,7 @@ const StepProgress: React.FC<StepProgressProps> = ({ steps, currentStep }) => {
             </span>
           </div>
           {index < steps.length - 1 && (
-            <div className={`flex-1 h-px mx-4 ${
+            <div className={`flex-1 h-px w-10 ${
               currentStep > step.id ? 'bg-black' : 'bg-gray-200'
             }`} />
           )}

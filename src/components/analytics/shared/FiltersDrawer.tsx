@@ -14,8 +14,8 @@ const FiltersDrawer: React.FC<FiltersDrawerProps> = ({ isFilterOpen, setIsFilter
     <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
       <SheetTrigger asChild>
         <Button variant="outline" className="flex items-center space-x-1">
+          <span className='text-gray-950'>Filters</span>
           <Filter className="w-4 h-4" />
-          <span>Filters</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-96 rounded-2xl">

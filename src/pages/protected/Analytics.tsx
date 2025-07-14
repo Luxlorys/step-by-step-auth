@@ -55,11 +55,10 @@ const Analytics = () => {
                 <Button 
                   variant="outline" 
                   className={cn(
-                    "flex items-center justify-start text-left font-normal",
+                    "flex items-center justify-start text-left text-gray-950 font-normal",
                     !dateRange && "text-muted-foreground"
                   )}
                 >
-                  <CalendarIcon className="w-4 h-4" />
                   {dateRange?.from ? (
                     dateRange.to ? (
                       <>
@@ -70,8 +69,9 @@ const Analytics = () => {
                       format(dateRange.from, "LLL dd, y")
                     )
                   ) : (
-                    <span>Choose period</span>
+                    <span className='text-gray-950'>Choose period</span>
                   )}
+                  <CalendarIcon className="w-4 h-4" color='#414149' />
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0" align="end">

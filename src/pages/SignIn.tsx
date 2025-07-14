@@ -36,7 +36,6 @@ const SignIn = () => {
             </div>
             <span className="font-semibold text-lg">YouInTown</span>
           </div>
-          <h1 className="text-sm text-gray-600 mb-6">Sign in</h1>
         </div>
 
         {/* Form Card */}

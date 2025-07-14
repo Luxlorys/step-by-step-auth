@@ -8,7 +8,7 @@ interface RegistrationSuccessProps {
 const RegistrationSuccess: React.FC<RegistrationSuccessProps> = ({ onSignIn }) => {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg p-8 max-w-md w-full shadow-lg border-0 text-center">
+      <div className="bg-white rounded-lg p-8 max-w-md w-full shadow-lg border-0">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4">
           Registration application submitted successfully!
         </h2>
