@@ -22,7 +22,7 @@ interface SidebarProps {
 
 const Sidebar = ({ isSuperAdmin }: SidebarProps) => {
   return (
-    <div className="w-64 bg-black text-white flex flex-col rounded-xl">
+    <div className="w-64 min-w-64 max-w-64 bg-black text-white flex flex-col rounded-xl" style={{ width: '256px', minWidth: '256px', maxWidth: '256px' }}>
       {/* Logo */}
       <div className="p-6 border-b border-gray-800">
         <div className="flex items-center gap-2">
