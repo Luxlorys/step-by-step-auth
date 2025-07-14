@@ -19,7 +19,9 @@ const DashboardLayout = () => {
           
           {/* Page Content */}
           <main className="flex-1 bg-white rounded-xl p-6 overflow-auto min-h-0 min-w-0">
-            <Outlet />
+            <div className="min-w-max">
+              <Outlet />
+            </div>
           </main>
         </div>
       </div>
