@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -10,10 +9,11 @@ import { useNavigate } from 'react-router-dom';
 
 const Members = () => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('inviting');
 
   return (
     <div className="bg-white">
-      <Tabs defaultValue="inviting" className="w-full">
+      <Tabs defaultValue="inviting" className="w-full" value={activeTab} onValueChange={setActiveTab}>
         <div className="flex items-center justify-between mb-6">
           <TabsList className="grid grid-cols-3 max-w-2xl gap-4">
             <TabsTrigger value="inviting" className="text-sm px-6">
@@ -28,10 +28,16 @@ const Members = () => {
           </TabsList>
           
           <div className="flex items-center space-x-3">
-            <Button variant="outline" className="flex items-center space-x-2" onClick={() => navigate('/dashboard/create-form')}>
-              <Download className="w-4 h-4" />
-              <span>Set a questions</span>
-            </Button>
+            {activeTab === 'requests' ? (
+              <Button variant="outline" className="flex items-center space-x-2" onClick={() => navigate('/dashboard/create-form')}>
+                <span>Set questions</span>
+              </Button>
+            ) : (
+              <Button variant="outline" className="flex items-center space-x-2">
+                <Download className="w-4 h-4" />
+                <span>Download template</span>
+              </Button>
+            )}
             <Button className="bg-black text-white hover:bg-gray-800">
               Save
             </Button>
