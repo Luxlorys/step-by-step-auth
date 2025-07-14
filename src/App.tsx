@@ -22,6 +22,7 @@ import Networks from "./pages/protected/Networks";
 import NotFound from "./pages/NotFound";
 import CompanyDetails from "./pages/protected/CompanyDetail";
 import MemberDetails from "./pages/protected/MemberDetails";
+import CreateForm from "./pages/protected/CreateForm";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const App = () => (
               <Route path="analytics" element={<Analytics />} />
               <Route path="members" element={<Members />} />
               <Route path="members/:id" element={<MemberDetails />} />
+              <Route path="create-form" element={<CreateForm />} />
               <Route path="company-details/:id" element={<CompanyDetails />} />
               <Route path="messaging" element={<Messaging />} />
               <Route path="network" element={<Network />} />

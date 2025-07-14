@@ -25,9 +25,9 @@ const Members = () => {
           </TabsList>
           
           <div className="flex items-center space-x-3">
-            <Button variant="outline" className="flex items-center space-x-2">
+            <Button variant="outline" className="flex items-center space-x-2" onClick={() => window.location.href = '/dashboard/create-form'}>
               <Download className="w-4 h-4" />
-              <span>Download Template</span>
+              <span>Set a questions</span>
             </Button>
             <Button className="bg-black text-white hover:bg-gray-800">
               Save
