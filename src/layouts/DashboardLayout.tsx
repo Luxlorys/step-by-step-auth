@@ -7,18 +7,18 @@ const DashboardLayout = () => {
   const { isSuperAdmin } = useAuth();
   
   return (
-    <div className="min-h-screen bg-[#F2F2F2] p-3">
-      <div className="min-h-[calc(100vh-24px)] flex gap-3">
+    <div className="h-screen bg-[#F2F2F2] p-3 overflow-hidden">
+      <div className="h-full flex gap-3">
         {/* Sidebar */}
         <Sidebar isSuperAdmin={isSuperAdmin} />
         
         {/* Main Content */}
-        <div className="min-h-[calc(100vh-24px)] flex-1 flex flex-col gap-3">
+        <div className="h-full flex-1 flex flex-col gap-3">
           {/* Top Bar */}
           <TopBar />
           
           {/* Page Content */}
-          <main className="flex-1 bg-white rounded-xl p-6 min-h-0">
+          <main className="flex-1 bg-white rounded-xl p-6 overflow-auto min-h-0">
             <Outlet />
           </main>
         </div>
