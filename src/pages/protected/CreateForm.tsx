@@ -112,7 +112,7 @@ const CreateForm = () => {
           </Dialog>
         </div>
 
-        <div className="space-y-4 mb-6">
+        <div className="grid grid-cols-3 gap-4 mb-6">
           {fields.map((field) => (
             <div key={field.id} className="p-4 border border-border rounded-lg">
               <div className="space-y-1 relative">
