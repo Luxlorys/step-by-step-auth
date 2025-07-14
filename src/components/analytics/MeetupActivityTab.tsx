@@ -1,5 +1,5 @@
 import React from 'react';
-import { Info, Users } from 'lucide-react';
+import { Info, Users, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ResponsiveContainer, ScatterChart, Scatter, CartesianGrid, XAxis, YAxis, Tooltip as RechartsTooltip } from 'recharts';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -327,36 +327,62 @@ const MeetupActivityTab: React.FC = () => {
       </div>
 
       {/* Geographic Hotspots */}
-      <Card className="p-6 bg-[#FCFCFC] border-[#E5E6E8]">
-        <CardHeader className="px-0 pt-0">
-          <CardTitle className="text-lg font-semibold">Geographic Hotspots</CardTitle>
-        </CardHeader>
-        <CardContent className="px-0 pb-0">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-4 bg-red-500 rounded-sm flex items-center justify-center">
-                  <div className="w-3 h-2 bg-yellow-400 rounded-sm"></div>
-                </div>
-                <span className="font-medium">Germany</span>
-              </div>
-              <div className="text-right">
-                <div className="font-semibold">1,456 meetups</div>
-              </div>
+      <div className="p-6 bg-[#FCFCFC] border border-[#E5E6E8] rounded-lg">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-lg font-semibold">Geographic Hotspots</h3>
+          <div className="flex items-center gap-2">
+            <ChevronLeft className="w-5 h-5 text-gray-400 cursor-pointer hover:text-gray-600" />
+            <ChevronRight className="w-5 h-5 text-gray-400 cursor-pointer hover:text-gray-600" />
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-3 gap-6">
+          {/* United Kingdom Card */}
+          <div className="bg-white border border-[#E5E6E8] rounded-lg p-4">
+            <div className="flex items-center justify-between mb-4">
+              <span className="font-medium text-gray-900">United Kingdom</span>
+              <span className="text-sm text-gray-600">1,456 meetups</span>
             </div>
-            <div className="ml-9 space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-gray-600">Total</span>
-                <span className="font-medium">1,456 meetups</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-600">Hanover</span>
-                <span className="font-medium">451 meetups</span>
-              </div>
+            <div className="flex items-center justify-between">
+              <div className="text-4xl font-bold text-gray-900">354</div>
+              <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+            </div>
+            <div className="mt-2">
+              <span className="text-sm text-gray-600">Bristol</span>
             </div>
           </div>
-        </CardContent>
-      </Card>
+
+          {/* Germany Card */}
+          <div className="bg-white border border-[#E5E6E8] rounded-lg p-4">
+            <div className="flex items-center justify-between mb-4">
+              <span className="font-medium text-gray-900">Germany</span>
+              <span className="text-sm text-gray-600">1,456 meetups</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="text-4xl font-bold text-gray-900">354</div>
+              <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+            </div>
+            <div className="mt-2">
+              <span className="text-sm text-gray-600">Hanover</span>
+            </div>
+          </div>
+
+          {/* France Card */}
+          <div className="bg-white border border-[#E5E6E8] rounded-lg p-4">
+            <div className="flex items-center justify-between mb-4">
+              <span className="font-medium text-gray-900">France</span>
+              <span className="text-sm text-gray-600">1,456 meetups</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="text-4xl font-bold text-gray-900">354</div>
+              <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+            </div>
+            <div className="mt-2">
+              <span className="text-sm text-gray-600">Lyon</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
