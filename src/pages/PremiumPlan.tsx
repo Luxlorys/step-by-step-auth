@@ -125,7 +125,7 @@ const PremiumPlan = () => {
           <Button
             variant="ghost"
             onClick={handleSkip}
-            className="flex-1 text-gray-600 hover:text-gray-800"
+            className="flex-1 bg-gray-100 text-gray-600 hover:text-gray-800"
           >
             Skip
           </Button>
