@@ -103,11 +103,3 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
-
-@layer components {
-  /* Custom checkbox styling */
-  [data-state="checked"] {
-    background-color: #057A55 !important;
-    border-color: #057A55 !important;
-  }
-}
