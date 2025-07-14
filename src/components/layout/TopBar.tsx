@@ -2,7 +2,13 @@
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { User } from 'lucide-react';
+import { ArrowLeft, User, ChevronDown, LogOut } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const getPageTitle = (pathname: string) => {
   const titleMap: Record<string, string> = {
@@ -32,18 +38,42 @@ const TopBar = () => {
 
   return (
     <div className="h-16 bg-white rounded-xl flex items-center justify-between px-6 flex-shrink-0">
-      {/* Title */}
-      <h1 className="text-xl font-semibold text-gray-800">{pageTitle}</h1>
+      {/* Title with Back Icon */}
+      <div className="flex items-center gap-3">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => navigate(-1)}
+          className="p-1"
+        >
+          <ArrowLeft className="w-4 h-4" />
+        </Button>
+        <h1 className="text-xl font-semibold text-gray-800">{pageTitle}</h1>
+      </div>
 
-      {/* Profile Button */}
-      <Button
-        variant="outline"
-        onClick={handleProfile}
-        className="flex items-center gap-2 bg-white hover:bg-gray-50"
-      >
-        <User className="w-4 h-4" />
-        Profile
-      </Button>
+      {/* Profile Dropdown */}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="outline"
+            className="flex items-center gap-2 bg-white hover:bg-gray-50"
+          >
+            <User className="w-4 h-4" />
+            Profile
+            <ChevronDown className="w-4 h-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-48">
+          <DropdownMenuItem onClick={handleProfile}>
+            <User className="w-4 h-4 mr-2" />
+            Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={logout}>
+            <LogOut className="w-4 h-4 mr-2" />
+            Log out
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 };
