@@ -12,7 +12,9 @@ import EmailConfirmationStep from './signup/EmailConfirmationStep';
 import OTPVerificationStep from './signup/OTPVerificationStep';
 import NetworkDetailsStep from './signup/NetworkDetailsStep';
 import CompanyDetailsStep from './signup/CompanyDetailsStep';
+import EstimatedCost from './signup/EstimatedCost';
 import PasswordStep from './signup/PasswordStep';
+import RegistrationSuccess from './signup/RegistrationSuccess';
 
 const MultiStepSignup = () => {
   const navigate = useNavigate();
@@ -59,13 +61,13 @@ const MultiStepSignup = () => {
   };
 
   const handleNext = () => {
-    if (currentStep < 6) {
+    if (currentStep < 8) {
       setCurrentStep(currentStep + 1);
-    } else if (currentStep === 6) {
-      // Complete registration and redirect to analytics
-      login(formData.email);
-      navigate('/dashboard/analytics');
     }
+  };
+
+  const handleSignIn = () => {
+    navigate('/signin');
   };
 
   const handleBack = () => {
@@ -106,7 +108,7 @@ const MultiStepSignup = () => {
             onInputChange={handleInputChange} 
           />
         );
-      case 4:
+      case 5:
         return (
           <PasswordStep 
             formData={formData} 
@@ -117,13 +119,13 @@ const MultiStepSignup = () => {
             onToggleConfirmPassword={() => setShowConfirmPassword(!showConfirmPassword)}
           />
         );
-      case 5:
+      case 6:
         return (
           <EmailConfirmationStep 
             email={formData.email} 
           />
         );
-      case 6:
+      case 7:
         return (
           <OTPVerificationStep 
             onOTPChange={handleOTPChange} 
@@ -135,22 +137,34 @@ const MultiStepSignup = () => {
   };
 
   const getButtonText = () => {
-    if (currentStep === 4) return 'Register';
-    if (currentStep === 5) return 'Continue';
-    if (currentStep === 6) return 'Complete';
+    if (currentStep === 5) return 'Register';
+    if (currentStep === 6) return 'Continue';
+    if (currentStep === 7) return 'Complete';
     return 'Continue';
   };
 
   const isNextDisabled = () => {
     if (currentStep === 1) return !isStep1Valid;
-    if (currentStep === 6) return !isStep3Valid;
+    if (currentStep === 7) return !isStep3Valid;
     return false;
   };
 
   const getProgressStep = () => {
-    if (currentStep <= 4) return currentStep;
+    if (currentStep <= 3) return currentStep;
+    if (currentStep === 4) return 3; // EstimatedCost shows as step 3
+    if (currentStep >= 5) return 4; // Password and beyond show as step 4
     return 4;
   };
+
+  // Special rendering for EstimatedCost step
+  if (currentStep === 4) {
+    return <EstimatedCost onContinue={handleNext} />;
+  }
+
+  // Special rendering for RegistrationSuccess step
+  if (currentStep === 8) {
+    return <RegistrationSuccess onSignIn={handleSignIn} />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -166,8 +180,8 @@ const MultiStepSignup = () => {
           <h1 className="text-sm text-gray-600 mb-6">Sign up {currentStep}</h1>
         </div>
 
-        {/* Progress Steps - Only show for steps 1-4 */}
-        {currentStep <= 4 && (
+        {/* Progress Steps - Only show for steps 1-5 (but not EstimatedCost step 4) */}
+        {currentStep <= 5 && currentStep !== 4 && (
           <StepProgress 
             steps={steps} 
             currentStep={getProgressStep()} 
@@ -178,7 +192,7 @@ const MultiStepSignup = () => {
         <Card className="shadow-lg border-0">
           <CardHeader className="pb-6">
             <h2 className="text-2xl font-semibold text-center">
-              {currentStep === 5 || currentStep === 6 ? 'Verification' : 'Sign up'}
+              {currentStep === 6 || currentStep === 7 ? 'Verification' : 'Sign up'}
             </h2>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -186,7 +200,7 @@ const MultiStepSignup = () => {
 
             {/* Navigation Buttons */}
             <div className="flex gap-3 pt-4">
-              {currentStep > 1 && currentStep !== 5 && currentStep !== 6 && (
+              {currentStep > 1 && currentStep !== 6 && currentStep !== 7 && (
                 <Button
                   variant="outline"
                   onClick={handleBack}
@@ -217,7 +231,7 @@ const MultiStepSignup = () => {
             </div>
 
             {/* Terms and Privacy */}
-            {(currentStep === 2 || currentStep === 3 || currentStep === 4) && (
+            {(currentStep === 2 || currentStep === 3 || currentStep === 5) && (
               <p className="text-xs text-gray-500 text-center mt-4">
                 By continuing, you indicate that you've read and agree to our{' '}
                 <span className="underline cursor-pointer">Term of Service</span> and{' '}

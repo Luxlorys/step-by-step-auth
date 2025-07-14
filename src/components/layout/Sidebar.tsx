@@ -4,17 +4,16 @@ import { Home, BarChart3, Users, Settings, FileText } from "lucide-react";
 const adminNavigationItems = [
   { name: "View analytics", href: "/dashboard/analytics", icon: Home },
   { name: "Members management", href: "/dashboard/members", icon: BarChart3 },
-  { name: "Messaging & Events", href: "/dashboard/messaging", icon: Users },
   { name: "Network management", href: "/dashboard/network", icon: Settings },
+  { name: "Messaging & Events", href: "/dashboard/messaging", icon: Users },
   { name: "Manage subscriptions", href: "/dashboard/subscriptions", icon: FileText },
+  { name: "Notifications", href: "/dashboard/notifications", icon: Settings },
 ];
 
 const superadminNavigationItems = [
-  { name: "Network Analytics", href: "/dashboard/analytics", icon: Home },
+  { name: "View Analytics", href: "/dashboard/analytics", icon: Home },
   { name: "Join request", href: "/dashboard/join-requests", icon: BarChart3 },
-  { name: "Manage subscriptions", href: "/dashboard/subscriptions", icon: Users },
-  { name: "Notifications (123)", href: "/dashboard/notifications", icon: Settings },
-  { name: "Manage networks", href: "/dashboard/networks", icon: FileText },
+  { name: "Notifications", href: "/dashboard/notifications", icon: Settings },
 ];
 
 interface SidebarProps {
