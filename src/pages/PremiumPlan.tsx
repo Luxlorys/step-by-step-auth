@@ -121,18 +121,18 @@ const PremiumPlan = () => {
         </p>
 
         {/* Action Buttons */}
-        <div className="flex justify-between items-center">
+        <div className="flex gap-4">
           <Button
             variant="ghost"
             onClick={handleSkip}
-            className="text-gray-600 hover:text-gray-800"
+            className="flex-1 text-gray-600 hover:text-gray-800"
           >
             Skip
           </Button>
           
           <Button
             onClick={handleNext}
-            className="bg-black text-white hover:bg-gray-800 px-8"
+            className="flex-1 bg-black text-white hover:bg-gray-800"
           >
             {currentSlide === slides.length - 1 ? 'Get Started' : 'Next'}
           </Button>
