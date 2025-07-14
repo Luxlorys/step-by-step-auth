@@ -44,7 +44,7 @@ const Analytics = () => {
             </TabsTrigger>
           </TabsList>
           
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2">
             <FiltersDrawer 
               isFilterOpen={isFilterOpen}
               setIsFilterOpen={setIsFilterOpen}
@@ -55,7 +55,7 @@ const Analytics = () => {
                 <Button 
                   variant="outline" 
                   className={cn(
-                    "flex items-center space-x-2 justify-start text-left font-normal",
+                    "flex items-center justify-start text-left font-normal",
                     !dateRange && "text-muted-foreground"
                   )}
                 >
@@ -81,7 +81,7 @@ const Analytics = () => {
                   defaultMonth={dateRange?.from}
                   selected={dateRange}
                   onSelect={handleDateSelect}
-                  numberOfMonths={2}
+                  numberOfMonths={1}
                   className={cn("p-3 pointer-events-auto")}
                 />
               </PopoverContent>

@@ -28,29 +28,29 @@ const chartConfig: ChartConfig = {
   },
 };
 
-const SubscriptionEngagementTab: React.FC = () => {
-  const activeSubscriptions = 3475;
-  const lastMonthChange = 12;
-  const newSubscriptions = 5453;
-  const newSubsChange = 3.2;
-  const unsubscribes = 1578;
-  const unsubsChange = -4;
-  const notificationCTR = 34;
-  const ctrChange = 3.2;
-  const invitationsSent = 4820;
-  const invitationsChange = 8;
-  const invitationsAccepted = 1324;
-  const acceptedChange = 12;
+const activeSubscriptions = 3475;
+const lastMonthChange = 12;
+const newSubscriptions = 5453;
+const newSubsChange = 3.2;
+const unsubscribes = 1578;
+const unsubsChange = -4;
+const notificationCTR = 34;
+const ctrChange = 3.2;
+const invitationsSent = 4820;
+const invitationsChange = 8;
+const invitationsAccepted = 1324;
+const acceptedChange = 12;
 
+const SubscriptionEngagementTab: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Metric Cards Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Active Subscriptions */}
-        <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
+        <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8] flex flex-col justify-between">
           <CardHeader className="pb-2 px-0">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
+              <CardTitle className="text-md font-medium text-gray-950 flex items-center gap-2">
                 Active subscriptions
                 <TooltipProvider>
                   <Tooltip>
@@ -76,10 +76,10 @@ const SubscriptionEngagementTab: React.FC = () => {
         </Card>
 
         {/* New Subscriptions */}
-        <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
+        <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8] flex flex-col justify-between">
           <CardHeader className="pb-2 px-0">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-gray-600">Subscription</CardTitle>
+              <CardTitle className="text-md font-medium text-gray-950">Subscription</CardTitle>
               <Users className="w-5 h-5 text-gray-400" />
             </div>
           </CardHeader>
@@ -106,10 +106,10 @@ const SubscriptionEngagementTab: React.FC = () => {
         </Card>
 
         {/* Notification CTR */}
-        <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
+        <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8] flex flex-col justify-between">
           <CardHeader className="pb-2 px-0">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
+              <CardTitle className="text-md font-medium text-gray-950 flex items-center gap-2">
                 Notification CTR
                 <TooltipProvider>
                   <Tooltip>
@@ -135,10 +135,10 @@ const SubscriptionEngagementTab: React.FC = () => {
         </Card>
 
         {/* Invitations */}
-        <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
+        <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8] flex flex-col justify-between">
           <CardHeader className="pb-2 px-0">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
+              <CardTitle className="text-md font-medium text-gray-950 flex items-center gap-2">
                 Invitations
                 <TooltipProvider>
                   <Tooltip>

@@ -13,12 +13,12 @@ const FiltersDrawer: React.FC<FiltersDrawerProps> = ({ isFilterOpen, setIsFilter
   return (
     <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" className="flex items-center space-x-2">
+        <Button variant="outline" className="flex items-center space-x-1">
           <Filter className="w-4 h-4" />
           <span>Filters</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-96">
+      <SheetContent side="right" className="w-96 rounded-2xl">
         <SheetHeader>
           <SheetTitle>Filters</SheetTitle>
         </SheetHeader>
