@@ -56,7 +56,7 @@ const Subscriptions = () => {
                         type="number"
                         value={members}
                         onChange={(e) => handleMembersChange(e.target.value)}
-                        className="text-center text-xl font-semibold border-none shadow-none w-24"
+                        className="text-center text-xl font-semibold h-12 w-32"
                       />
                       <Pencil className="h-4 w-4 text-muted-foreground" />
                     </div>
@@ -88,7 +88,7 @@ const Subscriptions = () => {
                         type="number"
                         value={members}
                         onChange={(e) => handleMembersChange(e.target.value)}
-                        className="text-center text-xl font-semibold border-none shadow-none w-24"
+                        className="text-center text-xl font-semibold h-12 w-32"
                       />
                       <Pencil className="h-4 w-4 text-muted-foreground" />
                     </div>
