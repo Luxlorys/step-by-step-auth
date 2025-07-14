@@ -114,18 +114,10 @@ const CreateForm = () => {
 
         <div className="space-y-4 mb-6">
           {fields.map((field) => (
-            <div key={field.id} className="grid grid-cols-3 gap-4 p-4 border border-border rounded-lg">
-              <div className="space-y-1">
+            <div key={field.id} className="p-4 border border-border rounded-lg">
+              <div className="space-y-1 relative">
                 <Label className="text-sm font-medium">{field.label}{field.mandatory && '*'}</Label>
                 <Input placeholder={field.placeholder} disabled />
-              </div>
-              <div className="space-y-1">
-                <Label className="text-sm font-medium">Job title{field.mandatory && '*'}</Label>
-                <Input placeholder="Add job title" disabled />
-              </div>
-              <div className="space-y-1 relative">
-                <Label className="text-sm font-medium">Department</Label>
-                <Input placeholder="Add department" disabled />
                 <Button
                   variant="ghost"
                   size="icon"
