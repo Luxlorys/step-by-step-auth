@@ -55,7 +55,7 @@ const Analytics = () => {
                 <Button 
                   variant="outline" 
                   className={cn(
-                    "flex items-center space-x-2 w-[280px] justify-start text-left font-normal",
+                    "flex items-center space-x-2 justify-start text-left font-normal",
                     !dateRange && "text-muted-foreground"
                   )}
                 >
