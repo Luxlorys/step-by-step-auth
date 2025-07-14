@@ -44,7 +44,7 @@ const mockModerators = Array.from({ length: 18 }, (_, i) => ({
   actionsRequireApproval: Math.random() > 0.5,
 }));
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 6;
 
 const Network = () => {
   const [adminPage, setAdminPage] = useState(1);
@@ -73,20 +73,20 @@ const Network = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-24">First name</TableHead>
-              <TableHead className="w-24">Last name</TableHead>
-              <TableHead className="w-20">Status</TableHead>
-              <TableHead className="w-24">Create meetup</TableHead>
-              <TableHead className="w-28">Create notification</TableHead>
-              <TableHead className="w-24">Add members</TableHead>
-              <TableHead className="w-24">Request to Join</TableHead>
+              <TableHead className="w-26">First name</TableHead>
+              <TableHead className="w-26">Last name</TableHead>
+              <TableHead className="w-26">Status</TableHead>
+              <TableHead className="w-26">Create meetup</TableHead>
+              <TableHead className="w-26">Create notification</TableHead>
+              <TableHead className="w-26">Add members</TableHead>
+              <TableHead className="w-26">Request to Join</TableHead>
               <TableHead className="w-26">Remove members</TableHead>
               <TableHead className="w-26">Add moderators</TableHead>
-              <TableHead className="w-28">Remove moderators</TableHead>
-              <TableHead className="w-20">Add admin</TableHead>
-              <TableHead className="w-24">Remove admin</TableHead>
-              <TableHead className="w-24">Remove network</TableHead>
-              <TableHead className="w-32">Actions require pre-approval</TableHead>
+              <TableHead className="w-26">Remove moderators</TableHead>
+              <TableHead className="w-26">Add admin</TableHead>
+              <TableHead className="w-26">Remove admin</TableHead>
+              <TableHead className="w-26">Remove network</TableHead>
+              <TableHead className="w-26">Actions require pre-approval</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -147,7 +147,7 @@ const Network = () => {
   );
 
   const renderPagination = (currentPage: number, totalPages: number, onPageChange: (page: number) => void) => (
-    <Pagination className="mt-4">
+    <Pagination className="justify-start">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious 
@@ -182,7 +182,7 @@ const Network = () => {
   );
 
   return (
-    <div className="p-6 bg-white">
+    <div className="bg-white">
       <h2 className="text-2xl font-semibold text-gray-800 mb-6">Permissions</h2>
       
       <Tabs defaultValue="admin" className="w-full">

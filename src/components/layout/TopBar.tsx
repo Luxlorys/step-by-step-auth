@@ -56,14 +56,14 @@ const TopBar = () => {
         <DropdownMenuTrigger asChild>
           <Button
             variant="outline"
-            className="flex items-center gap-2 bg-white hover:bg-gray-50"
+            className="flex items-center gap-2"
           >
             <User className="w-4 h-4" />
             Profile
             <ChevronDown className="w-4 h-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-48">
+        <DropdownMenuContent align="end" className='px-4'>
           <DropdownMenuItem onClick={handleProfile}>
             <User className="w-4 h-4 mr-2" />
             Profile

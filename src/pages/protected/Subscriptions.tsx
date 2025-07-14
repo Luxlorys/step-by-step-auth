@@ -43,7 +43,7 @@ const Subscriptions = () => {
             <div className="max-w-md mx-auto">
               <div className="relative bg-white border-2 border-gray-300 rounded-lg p-6">
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-foreground text-background px-3 py-1 rounded text-sm">
+                  <span className="bg-foreground text-background px-3 py-1 rounded-xl text-sm">
                     Matching
                   </span>
                 </div>
@@ -75,7 +75,7 @@ const Subscriptions = () => {
             <div className="max-w-md mx-auto">
               <div className="relative bg-white border-2 border-gray-300 rounded-lg p-6">
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-foreground text-background px-3 py-1 rounded text-sm">
+                  <span className="bg-foreground text-background px-3 py-1 rounded-xl text-sm">
                     Matching
                   </span>
                 </div>
