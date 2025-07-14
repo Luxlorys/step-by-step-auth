@@ -94,7 +94,7 @@ const MembersTable: React.FC<MembersTableProps> = ({
   const [memberTags, setMemberTags] = useState<string[]>([]);
 
   const handleRowClick = (memberId: string) => {
-    navigate(`/members/${memberId}`);
+    navigate(`/dashboard/members/${memberId}`);
   };
 
   const handleEditTags = (member: Member) => {

@@ -38,7 +38,7 @@ const MemberDetails = () => {
       title: "Request Approved",
       description: "The membership request has been approved successfully.",
     });
-    navigate('/members');
+    navigate('/dashboard/members');
   };
 
   const handleDelete = () => {
@@ -54,7 +54,7 @@ const MemberDetails = () => {
     });
     setDeleteOpen(false);
     setDeleteReason("");
-    navigate('/members');
+    navigate('/dashboard/members');
   };
 
   return (

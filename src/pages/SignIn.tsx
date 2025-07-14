@@ -17,7 +17,7 @@ const SignIn = () => {
   const handleSignIn = () => {
     if (formData.email) {
       login(formData.email);
-      navigate('/analytics');
+      navigate('/dashboard/analytics');
     }
   };
 

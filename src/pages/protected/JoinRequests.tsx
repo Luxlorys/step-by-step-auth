@@ -180,7 +180,7 @@ const JoinRequests = () => {
                   <TableRow 
                     key={request.id} 
                     className="hover:bg-gray-50 cursor-pointer"
-                    onClick={() => navigate(`/company-details/${request.id}`)}
+                    onClick={() => navigate(`/dashboard/company-details/${request.id}`)}
                   >
                     <TableCell>
                       <Tooltip>

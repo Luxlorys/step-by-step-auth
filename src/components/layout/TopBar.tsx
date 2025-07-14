@@ -6,12 +6,15 @@ import { User } from 'lucide-react';
 
 const getPageTitle = (pathname: string) => {
   const titleMap: Record<string, string> = {
-    '/analytics': 'Analytics',
-    '/members': 'Members management',
-    '/messaging': 'Messaging & Events',
-    '/network': 'Network management',
-    '/subscriptions': 'Manage subscriptions',
-    '/my-profile': 'My Profile',
+    '/dashboard/analytics': 'Analytics',
+    '/dashboard/members': 'Members management',
+    '/dashboard/messaging': 'Messaging & Events',
+    '/dashboard/network': 'Network management',
+    '/dashboard/subscriptions': 'Manage subscriptions',
+    '/dashboard/my-profile': 'My Profile',
+    '/dashboard/join-requests': 'Join Requests',
+    '/dashboard/notifications': 'Notifications',
+    '/dashboard/networks': 'Networks',
   };
   return titleMap[pathname] || 'Analytics';
 };
@@ -22,7 +25,7 @@ const TopBar = () => {
   const location = useLocation();
 
   const handleProfile = () => {
-    navigate('/my-profile');
+    navigate('/dashboard/my-profile');
   };
 
   const pageTitle = getPageTitle(location.pathname);

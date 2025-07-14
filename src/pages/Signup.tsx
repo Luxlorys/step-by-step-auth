@@ -1,8 +1,8 @@
 
 import MultiStepSignup from "@/components/MultiStepSignup";
 
-const Index = () => {
+const SignUp = () => {
   return <MultiStepSignup />;
 };
 
-export default Index;
+export default SignUp;

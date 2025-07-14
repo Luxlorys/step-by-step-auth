@@ -36,7 +36,7 @@ const CompanyDetails = () => {
       title: "Request approved",
       description: "The membership request has been approved successfully.",
     });
-    navigate("/join-requests");
+    navigate("/dashboard/join-requests");
   };
 
   const handleDelete = () => {
@@ -51,7 +51,7 @@ const CompanyDetails = () => {
       variant: "destructive",
     });
     setShowDeleteDialog(false);
-    navigate("/join-requests");
+    navigate("/dashboard/join-requests");
   };
 
   return (

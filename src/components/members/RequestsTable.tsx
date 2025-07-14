@@ -100,7 +100,7 @@ const RequestsTable: React.FC<RequestsTableProps> = ({
   const [requestTags, setRequestTags] = useState<string[]>([]);
 
   const handleRowClick = (requestId: string) => {
-    navigate(`/members/${requestId}`);
+    navigate(`/dashboard/members/${requestId}`);
   };
 
   const handleEditTags = (request: MembershipRequest) => {

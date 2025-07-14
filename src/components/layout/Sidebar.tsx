@@ -2,19 +2,19 @@ import { NavLink } from "react-router-dom";
 import { Home, BarChart3, Users, Settings, FileText } from "lucide-react";
 
 const adminNavigationItems = [
-  { name: "View analytics", href: "/analytics", icon: Home },
-  { name: "Members management", href: "/members", icon: BarChart3 },
-  { name: "Messaging & Events", href: "/messaging", icon: Users },
-  { name: "Network management", href: "/network", icon: Settings },
-  { name: "Manage subscriptions", href: "/subscriptions", icon: FileText },
+  { name: "View analytics", href: "/dashboard/analytics", icon: Home },
+  { name: "Members management", href: "/dashboard/members", icon: BarChart3 },
+  { name: "Messaging & Events", href: "/dashboard/messaging", icon: Users },
+  { name: "Network management", href: "/dashboard/network", icon: Settings },
+  { name: "Manage subscriptions", href: "/dashboard/subscriptions", icon: FileText },
 ];
 
 const superadminNavigationItems = [
-  { name: "Network Analytics", href: "/analytics", icon: Home },
-  { name: "Join request", href: "/join-requests", icon: BarChart3 },
-  { name: "Manage subscriptions", href: "/subscriptions", icon: Users },
-  { name: "Notifications (123)", href: "/notifications", icon: Settings },
-  { name: "Manage networks", href: "/networks", icon: FileText },
+  { name: "Network Analytics", href: "/dashboard/analytics", icon: Home },
+  { name: "Join request", href: "/dashboard/join-requests", icon: BarChart3 },
+  { name: "Manage subscriptions", href: "/dashboard/subscriptions", icon: Users },
+  { name: "Notifications (123)", href: "/dashboard/notifications", icon: Settings },
+  { name: "Manage networks", href: "/dashboard/networks", icon: FileText },
 ];
 
 interface SidebarProps {

@@ -7,7 +7,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardLayout from "./layouts/DashboardLayout";
-import Index from "./pages/Index";
+import Landing from "./pages/Landing";
+import Signup from "./pages/Signup";
 import SignIn from "./pages/SignIn";
 import Analytics from "./pages/protected/Analytics";
 import Members from "./pages/protected/Members";
@@ -32,14 +33,18 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/signup" element={<Index />} />
+            {/* Public Routes */}
+            <Route path="/" element={<Landing />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route path="/" element={
+            <Route path="/signup" element={<Signup />} />
+            
+            {/* Protected Routes */}
+            <Route path="/dashboard" element={
               <ProtectedRoute>
                 <DashboardLayout />
               </ProtectedRoute>
             }>
-              <Route index element={<Navigate to="/analytics" replace />} />
+              <Route index element={<Navigate to="/dashboard/analytics" replace />} />
               <Route path="analytics" element={<Analytics />} />
               <Route path="members" element={<Members />} />
               <Route path="members/:id" element={<MemberDetails />} />
@@ -52,6 +57,7 @@ const App = () => (
               <Route path="networks" element={<Networks />} />
               <Route path="my-profile" element={<MyProfile />} />
             </Route>
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
