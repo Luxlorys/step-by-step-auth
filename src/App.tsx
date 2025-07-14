@@ -11,7 +11,6 @@ import Index from "./pages/Index";
 import SignIn from "./pages/SignIn";
 import Analytics from "./pages/protected/Analytics";
 import Members from "./pages/protected/Members";
-import MemberDetails from "./pages/protected/MemberDetails";
 import Messaging from "./pages/protected/Messaging";
 import Network from "./pages/protected/Network";
 import Subscriptions from "./pages/protected/Subscriptions";
@@ -20,6 +19,8 @@ import JoinRequests from "./pages/protected/JoinRequests";
 import Notifications from "./pages/protected/Notifications";
 import Networks from "./pages/protected/Networks";
 import NotFound from "./pages/NotFound";
+import CompanyDetails from "./pages/protected/CompanyDetail";
+import MemberDetails from "./pages/protected/MemberDetails";
 
 const queryClient = new QueryClient();
 
@@ -42,7 +43,7 @@ const App = () => (
               <Route path="analytics" element={<Analytics />} />
               <Route path="members" element={<Members />} />
               <Route path="members/:id" element={<MemberDetails />} />
-              <Route path="member-details/:id" element={<MemberDetails />} />
+              <Route path="company-details/:id" element={<CompanyDetails />} />
               <Route path="messaging" element={<Messaging />} />
               <Route path="network" element={<Network />} />
               <Route path="subscriptions" element={<Subscriptions />} />

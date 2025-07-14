@@ -35,6 +35,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { MembershipRequest } from '@/utils/membershipRequestsData';
+import { log } from 'console';
 
 interface RequestsTableProps {
   requests: MembershipRequest[];
