@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Search, Filter, MoreVertical, Check, Pause, RotateCcw, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -120,9 +121,10 @@ const truncateText = (text: string, maxLength: number = 25) => {
 };
 
 const JoinRequests = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 6;
 
   const filteredRequests = joinRequests.filter(request =>
     request.companyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -175,7 +177,11 @@ const JoinRequests = () => {
               </TableHeader>
               <TableBody>
                 {currentRequests.map((request) => (
-                  <TableRow key={request.id} className="hover:bg-gray-50">
+                  <TableRow 
+                    key={request.id} 
+                    className="hover:bg-gray-50 cursor-pointer"
+                    onClick={() => navigate(`/member-details/${request.id}`)}
+                  >
                     <TableCell>
                       <Tooltip>
                         <TooltipTrigger asChild>
@@ -226,7 +232,12 @@ const JoinRequests = () => {
                     <TableCell>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-8 w-8">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="h-8 w-8"
+                            onClick={(e) => e.stopPropagation()}
+                          >
                             <MoreVertical className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
