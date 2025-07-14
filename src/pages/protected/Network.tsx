@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Mock data for admins
 const mockAdmins = Array.from({ length: 25 }, (_, i) => ({
@@ -94,7 +95,13 @@ const Network = () => {
                 <TableCell>{person.firstName}</TableCell>
                 <TableCell>{person.lastName}</TableCell>
                 <TableCell>
-                  <Badge variant={person.status === "joined" ? "default" : "secondary"}>
+                  <Badge 
+                    className={person.status === "joined" 
+                      ? "border-[#057A55] bg-[#ECFDF5] text-[#057A55]" 
+                      : "border-[#FF8A4C] bg-[#FEECDC] text-[#FF8A4C]"
+                    }
+                    variant="outline"
+                  >
                     {person.status}
                   </Badge>
                 </TableCell>
@@ -178,15 +185,22 @@ const Network = () => {
     <div className="p-6 bg-white">
       <h2 className="text-2xl font-semibold text-gray-800 mb-6">Permissions</h2>
       
-      {/* Admin Table */}
-      {renderTable(currentAdmins, "Admin", "Add admin")}
-      {renderPagination(adminPage, totalAdminPages, setAdminPage)}
-      
-      {/* Moderators Table */}
-      <div className="mt-8">
-        {renderTable(currentModerators, "Moderators", "Add moderator")}
-        {renderPagination(moderatorPage, totalModeratorPages, setModeratorPage)}
-      </div>
+      <Tabs defaultValue="admin" className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="admin" className="w-full">Admin</TabsTrigger>
+          <TabsTrigger value="moderators" className="w-full">Moderators</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="admin">
+          {renderTable(currentAdmins, "Admin", "Add admin")}
+          {renderPagination(adminPage, totalAdminPages, setAdminPage)}
+        </TabsContent>
+        
+        <TabsContent value="moderators">
+          {renderTable(currentModerators, "Moderators", "Add moderator")}
+          {renderPagination(moderatorPage, totalModeratorPages, setModeratorPage)}
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
