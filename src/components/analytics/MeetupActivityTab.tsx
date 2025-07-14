@@ -1,7 +1,7 @@
 import React from 'react';
 import { Info, Users } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ResponsiveContainer, ScatterChart, Scatter, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { ResponsiveContainer, ScatterChart, Scatter, CartesianGrid, XAxis, YAxis, Tooltip as RechartsTooltip } from 'recharts';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { MeetupTopicDataPoint, DayTimeSlot } from './shared/types';
 
@@ -187,6 +187,22 @@ const MeetupActivityTab: React.FC = () => {
                   tickLine={false}
                   axisLine={false}
                 />
+                <RechartsTooltip 
+                  content={({ active, payload }) => {
+                    if (active && payload && payload.length) {
+                      const data = payload[0].payload;
+                      if (data.topic) {
+                        return (
+                          <div className="bg-[#3557FF] text-white px-3 py-2 rounded-lg shadow-lg">
+                            <div className="font-medium">{data.topic}</div>
+                            <div className="text-sm opacity-90">{data.y}</div>
+                          </div>
+                        );
+                      }
+                    }
+                    return null;
+                  }}
+                />
                 <Scatter 
                   dataKey="y" 
                   fill="#3b82f6"
@@ -201,13 +217,6 @@ const MeetupActivityTab: React.FC = () => {
                 />
               </ScatterChart>
             </ResponsiveContainer>
-            {/* Career development label */}
-            <div className="mt-2">
-              <div className="inline-flex items-center bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">
-                <span>Career development</span>
-                <span className="ml-2 bg-white bg-opacity-20 px-2 py-0.5 rounded text-xs">65</span>
-              </div>
-            </div>
           </CardContent>
         </Card>
 
@@ -232,37 +241,68 @@ const MeetupActivityTab: React.FC = () => {
             </div>
           </CardHeader>
           <CardContent className="px-0 pb-0">
-            {/* Time periods */}
-            <div className="grid grid-cols-3 gap-4 mb-4">
-              <div className="text-center">
-                <div className="text-sm font-medium">AM</div>
-              </div>
-              <div className="text-center">
-                <div className="text-sm font-medium">PM</div>
-              </div>
-              <div className="text-center">
-                <div className="text-sm font-medium">EVE</div>
-              </div>
-            </div>
-            
-            {/* Days grid */}
-            <div className="space-y-2">
+            {/* Grid Layout */}
+            <div className="grid grid-cols-8 gap-2 mb-4">
+              {/* Empty corner cell */}
+              <div></div>
+              {/* Day headers */}
               {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
-                <div key={day} className="grid grid-cols-7 gap-2 items-center">
-                  <div className="text-sm font-medium text-center">{day}</div>
-                  <div className="col-span-6 grid grid-cols-6 gap-1">
-                    {dayTimeData
-                      .filter(d => d.day === day)
-                      .map((slot, index) => (
-                        <div
-                          key={index}
-                          className="h-6 rounded text-xs flex items-center justify-center text-white font-medium"
-                          style={{ backgroundColor: slot.color }}
-                        >
-                          {slot.slot}
-                        </div>
-                      ))}
-                  </div>
+                <div key={day} className="text-center text-sm font-medium">
+                  {day}
+                </div>
+              ))}
+              
+              {/* AM Row */}
+              <div className="text-sm font-medium flex items-center">AM</div>
+              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
+                <div key={`${day}-AM`} className="flex flex-col gap-1">
+                  {dayTimeData
+                    .filter(d => d.day === day && d.time === 'AM')
+                    .map((slot, index) => (
+                      <div
+                        key={index}
+                        className="h-6 rounded text-xs flex items-center justify-center text-white font-medium"
+                        style={{ backgroundColor: slot.color }}
+                      >
+                        {slot.slot}
+                      </div>
+                    ))}
+                </div>
+              ))}
+              
+              {/* PM Row */}
+              <div className="text-sm font-medium flex items-center">PM</div>
+              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
+                <div key={`${day}-PM`} className="flex flex-col gap-1">
+                  {dayTimeData
+                    .filter(d => d.day === day && d.time === 'PM')
+                    .map((slot, index) => (
+                      <div
+                        key={index}
+                        className="h-6 rounded text-xs flex items-center justify-center text-white font-medium"
+                        style={{ backgroundColor: slot.color }}
+                      >
+                        {slot.slot}
+                      </div>
+                    ))}
+                </div>
+              ))}
+              
+              {/* EVE Row */}
+              <div className="text-sm font-medium flex items-center">EVE</div>
+              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
+                <div key={`${day}-EVE`} className="flex flex-col gap-1">
+                  {dayTimeData
+                    .filter(d => d.day === day && d.time === 'EVE')
+                    .map((slot, index) => (
+                      <div
+                        key={index}
+                        className="h-6 rounded text-xs flex items-center justify-center text-white font-medium"
+                        style={{ backgroundColor: slot.color }}
+                      >
+                        {slot.slot}
+                      </div>
+                    ))}
                 </div>
               ))}
             </div>
