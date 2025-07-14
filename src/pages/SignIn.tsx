@@ -26,17 +26,20 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
-              <span className="text-white font-bold text-sm">YT</span>
-            </div>
-            <span className="font-semibold text-lg">YouInTown</span>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Logo at top left */}
+      <div className="p-4">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
+            <span className="text-white font-bold text-sm">YT</span>
           </div>
+          <span className="font-semibold text-lg">YouInTown</span>
         </div>
+      </div>
+
+      {/* Centered content */}
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div className="w-full max-w-md">
 
         {/* Form Card */}
         <Card className="shadow-lg border-0">
@@ -73,10 +76,12 @@ const SignIn = () => {
           </CardContent>
         </Card>
 
-        {/* Footer */}
-        <div className="text-center mt-8">
-          <p className="text-xs text-gray-400">© copyright 2025 YouInTown</p>
         </div>
+      </div>
+
+      {/* Footer at bottom center */}
+      <div className="text-center p-4">
+        <p className="text-xs text-gray-400">© copyright 2025 YouInTown</p>
       </div>
     </div>
   );
