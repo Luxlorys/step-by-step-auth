@@ -6,8 +6,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import InvitingMembersTab from '@/components/members/InvitingMembersTab';
 import MembershipRequestsTab from '@/components/members/MembershipRequestsTab';
 import AllMembersTab from '@/components/members/AllMembersTab';
+import { useNavigate } from 'react-router-dom';
 
 const Members = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-white">
       <Tabs defaultValue="inviting" className="w-full">
@@ -25,7 +28,7 @@ const Members = () => {
           </TabsList>
           
           <div className="flex items-center space-x-3">
-            <Button variant="outline" className="flex items-center space-x-2" onClick={() => window.location.href = '/dashboard/create-form'}>
+            <Button variant="outline" className="flex items-center space-x-2" onClick={() => navigate('/dashboard/create-form')}>
               <Download className="w-4 h-4" />
               <span>Set a questions</span>
             </Button>
