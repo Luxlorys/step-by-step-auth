@@ -106,17 +106,17 @@ const Subscriptions = () => {
       </div>
 
       {/* Payment Details */}
-      <div className="bg-gray-100 border border-gray-300 rounded-lg p-6">
+      <div className="bg-[#FAFAFA] border border-[#E2E8F0] rounded-xl p-6">
         <h3 className="text-lg font-semibold mb-2">Payment Details</h3>
         <p className="text-sm text-gray-600 mb-6">Here you can manage your payment methods</p>
         
         <div className="space-y-4">
-          <div className="bg-white border border-[#E2E8F0] rounded-lg p-4 flex justify-between items-center">
+          <div className="bg-white border border-[#E2E8F0] rounded-xl p-4 flex justify-between items-center">
             <div>
               <p className="font-medium">Payment method</p>
               <p className="text-sm text-gray-600">Stripe Link</p>
             </div>
-            <button className="w-[132px] h-[40px] bg-[#F1F5F9] border border-black rounded-lg flex items-center justify-center gap-2 text-sm">
+            <button className="w-[132px] h-[40px] bg-[#F1F5F9] border border-black rounded-md flex items-center justify-center gap-2 text-sm">
               <Pencil className="h-4 w-4" />
               Edit method
             </button>
