@@ -67,6 +67,16 @@ const SignIn = () => {
               </Button>
             </div>
 
+            {/* Forgot Password Link */}
+            <div className="text-center">
+              <button
+                onClick={() => navigate('/forgot-password')}
+                className="text-sm text-gray-600 hover:text-gray-800 underline"
+              >
+                Forgot password?
+              </button>
+            </div>
+
             {/* Terms and Privacy */}
             <p className="text-xs text-gray-500 text-center mt-4">
               By continuing, you indicate that you've read and agree to our{' '}

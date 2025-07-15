@@ -10,6 +10,7 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import PremiumPlan from "./pages/PremiumPlan";
 import Signup from "./pages/Signup";
 import SignIn from "./pages/SignIn";
+import ForgotPassword from "./pages/ForgotPassword";
 import Analytics from "./pages/protected/Analytics";
 import Members from "./pages/protected/Members";
 import Messaging from "./pages/protected/Messaging";
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/" element={<PremiumPlan />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             
             {/* Protected Routes */}
             <Route path="/dashboard" element={
