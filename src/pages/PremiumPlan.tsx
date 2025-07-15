@@ -46,13 +46,13 @@ const PremiumPlan = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full">
+      <div className="bg-white rounded-lg shadow-lg p-8 max-w-3xl w-full">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-3">
+          <h1 className="text-2xl font-normal text-gray-950 mb-3">
             Access to dashboard requires a premium plan
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-sm text-gray-600">
             This feature is part of our premium offering.<br />
             Upgrade your plan to unlock full access to:
           </p>
@@ -62,7 +62,6 @@ const PremiumPlan = () => {
         <div className="relative mb-6">
           <div 
             className="w-full rounded-lg overflow-hidden"
-            style={{ height: '350px', backgroundColor: '#F5F5F6' }}
           >
             <div 
               className="flex transition-transform duration-300 ease-in-out h-full"
@@ -73,7 +72,7 @@ const PremiumPlan = () => {
                   key={slide.id}
                   className="w-full flex-shrink-0 flex items-center justify-center text-gray-700 text-xl font-medium"
                 >
-                  {slide.content}
+                  <img src="/slide1.png" alt="UK flag" className="w-300 h-[300px]" />
                 </div>
               ))}
             </div>
@@ -107,15 +106,15 @@ const PremiumPlan = () => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                index === currentSlide ? 'bg-gray-800' : 'bg-gray-300'
+              className={`w-2 h-2 rounded-full border border-black transition-colors duration-200 ${
+                index === currentSlide ? 'bg-gray-800' : 'bg-white'
               }`}
             />
           ))}
         </div>
 
         {/* Description Text */}
-        <p className="text-center text-gray-600 text-lg mb-8">
+        <p className="text-center text-gray-600 text-sm mb-8">
           It is a very useful tool to control your community<br />
           and see what interests are in them
         </p>

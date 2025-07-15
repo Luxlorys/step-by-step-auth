@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardLayout from "./layouts/DashboardLayout";
-import Landing from "./pages/Landing";
 import PremiumPlan from "./pages/PremiumPlan";
 import Signup from "./pages/Signup";
 import SignIn from "./pages/SignIn";
@@ -37,7 +36,6 @@ const App = () => (
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<PremiumPlan />} />
-            <Route path="/landing" element={<Landing />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<Signup />} />
             
