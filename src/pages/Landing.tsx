@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -27,6 +28,27 @@ const Landing = () => {
           Connect with your local community and discover opportunities in your town.
         </p>
         
+        {/* Feature Carousel */}
+        <div className="w-[730px] mx-auto mb-12 flex items-center justify-center gap-8">
+          <button className="w-10 h-10 bg-white border border-black rounded-full flex items-center justify-center hover:bg-gray-50">
+            <ArrowLeft className="h-5 w-5" />
+          </button>
+          
+          <div className="w-[350px] border border-black rounded-2xl p-4 relative">
+            <div className="absolute top-4 right-4">
+              <span className="text-black text-sm font-medium">Network management</span>
+            </div>
+            
+            <div className="bg-white rounded-lg h-48 flex items-center justify-center">
+              <p className="text-gray-500">Feature preview</p>
+            </div>
+          </div>
+          
+          <button className="w-10 h-10 bg-white border border-black rounded-full flex items-center justify-center hover:bg-gray-50">
+            <ArrowRight className="h-5 w-5" />
+          </button>
+        </div>
+
         {/* Get Started Button */}
         <Button 
           onClick={handleGetStarted}
