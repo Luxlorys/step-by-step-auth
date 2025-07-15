@@ -345,7 +345,7 @@ const MeetupActivityTab: React.FC = () => {
             </div>
             <div className="flex items-center justify-between">
               <div className="text-4xl font-bold text-gray-900">354</div>
-              <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+              <img src="/uk.png" alt="UK flag" className="w-12 h-12 rounded-full object-cover" />
             </div>
             <div className="mt-2">
               <span className="text-sm text-gray-600">Bristol</span>
@@ -360,7 +360,7 @@ const MeetupActivityTab: React.FC = () => {
             </div>
             <div className="flex items-center justify-between">
               <div className="text-4xl font-bold text-gray-900">354</div>
-              <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+              <img src="/germany.png" alt="Germany flag" className="w-12 h-12 rounded-full object-cover" />
             </div>
             <div className="mt-2">
               <span className="text-sm text-gray-600">Hanover</span>
@@ -375,7 +375,7 @@ const MeetupActivityTab: React.FC = () => {
             </div>
             <div className="flex items-center justify-between">
               <div className="text-4xl font-bold text-gray-900">354</div>
-              <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+              <img src="/france.png" alt="France flag" className="w-12 h-12 rounded-full object-cover" />
             </div>
             <div className="mt-2">
               <span className="text-sm text-gray-600">Lyon</span>

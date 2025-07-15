@@ -118,7 +118,7 @@ const Subscriptions = () => {
             </div>
             <Button variant="outline" size="sm">
               <Pencil className="h-4 w-4 mr-2" />
-              Edit method
+              Edit info
             </Button>
           </div>
           
@@ -140,7 +140,7 @@ const Subscriptions = () => {
             </div>
             <Button variant="outline" size="sm">
               <Pencil className="h-4 w-4 mr-2" />
-              Edit number
+              Edit info
             </Button>
           </div>
           
@@ -151,7 +151,7 @@ const Subscriptions = () => {
             </div>
             <Button variant="outline" size="sm">
               <Pencil className="h-4 w-4 mr-2" />
-              Edit email
+              Edit info
             </Button>
           </div>
         </div>
