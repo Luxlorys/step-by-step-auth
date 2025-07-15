@@ -634,22 +634,6 @@ const Messaging = () => {
                   <div className="space-y-2">
                     <Label>Match atendees</Label>
                     <div className="space-y-2">
-                      {selectedAttendees.length > 0 && (
-                        <div className="p-3 bg-gray-50 rounded-lg border">
-                          <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium">
-                              {selectedAttendees.length} attendees selected
-                            </span>
-                            <button
-                              onClick={() => setSelectedAttendees([])}
-                              className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1"
-                            >
-                              Clear all <ChevronDown className="h-4 w-4" />
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                      
                       <Popover open={showAttendeesDropdown} onOpenChange={setShowAttendeesDropdown}>
                         <PopoverTrigger asChild>
                           <Button
