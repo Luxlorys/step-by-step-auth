@@ -106,53 +106,53 @@ const Subscriptions = () => {
       </div>
 
       {/* Payment Details */}
-      <div className="bg-[#FAFAFA] border border-[#E2E8F0] rounded-lg p-6">
+      <div className="bg-gray-100 border border-gray-300 rounded-lg p-6">
         <h3 className="text-lg font-semibold mb-2">Payment Details</h3>
-        <p className="text-sm text-muted-foreground mb-6">Here you can manage your payment methods</p>
+        <p className="text-sm text-gray-600 mb-6">Here you can manage your payment methods</p>
         
         <div className="space-y-4">
-          <div className="flex justify-between items-center py-3 border-b border-[#E2E8F0]">
+          <div className="bg-white border border-[#E2E8F0] rounded-lg p-4 flex justify-between items-center">
             <div>
               <p className="font-medium">Payment method</p>
-              <p className="text-sm text-muted-foreground">Stripe Link</p>
+              <p className="text-sm text-gray-600">Stripe Link</p>
             </div>
-            <Button variant="outline" size="sm">
-              <Pencil className="h-4 w-4 mr-2" />
-              Edit info
-            </Button>
+            <button className="w-[132px] h-[40px] bg-[#F1F5F9] border border-black rounded-lg flex items-center justify-center gap-2 text-sm">
+              <Pencil className="h-4 w-4" />
+              Edit method
+            </button>
           </div>
           
-          <div className="flex justify-between items-center py-3 border-b border-[#E2E8F0]">
+          <div className="bg-white border border-[#E2E8F0] rounded-lg p-4 flex justify-between items-center">
             <div>
               <p className="font-medium">Billed to</p>
-              <p className="text-sm text-muted-foreground">Kings Place, 90 York Way, London, N1 9FX, United Kingdom</p>
+              <p className="text-sm text-gray-600">Kings Place, 90 York Way, London, N1 9FX, United Kingdom</p>
             </div>
-            <Button variant="outline" size="sm">
-              <Pencil className="h-4 w-4 mr-2" />
+            <button className="w-[132px] h-[40px] bg-[#F1F5F9] border border-black rounded-lg flex items-center justify-center gap-2 text-sm">
+              <Pencil className="h-4 w-4" />
               Edit info
-            </Button>
+            </button>
           </div>
           
-          <div className="flex justify-between items-center py-3 border-b border-[#E2E8F0]">
+          <div className="bg-white border border-[#E2E8F0] rounded-lg p-4 flex justify-between items-center">
             <div>
               <p className="font-medium">VAT/GST number</p>
-              <p className="text-sm text-muted-foreground">4567-7834</p>
+              <p className="text-sm text-gray-600">4567-7834</p>
             </div>
-            <Button variant="outline" size="sm">
-              <Pencil className="h-4 w-4 mr-2" />
-              Edit info
-            </Button>
+            <button className="w-[132px] h-[40px] bg-[#F1F5F9] border border-black rounded-lg flex items-center justify-center gap-2 text-sm">
+              <Pencil className="h-4 w-4" />
+              Edit number
+            </button>
           </div>
           
-          <div className="flex justify-between items-center py-3">
+          <div className="bg-white border border-[#E2E8F0] rounded-lg p-4 flex justify-between items-center">
             <div>
               <p className="font-medium">Billing email</p>
-              <p className="text-sm text-muted-foreground">useremail@company.com</p>
+              <p className="text-sm text-gray-600">useremail@company.com</p>
             </div>
-            <Button variant="outline" size="sm">
-              <Pencil className="h-4 w-4 mr-2" />
-              Edit info
-            </Button>
+            <button className="w-[132px] h-[40px] bg-[#F1F5F9] border border-black rounded-lg flex items-center justify-center gap-2 text-sm">
+              <Pencil className="h-4 w-4" />
+              Edit email
+            </button>
           </div>
         </div>
       </div>
