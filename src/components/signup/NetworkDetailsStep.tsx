@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Upload, X, Info } from 'lucide-react';
 import { FormData } from '@/types/signup';
 
@@ -22,6 +23,7 @@ const NetworkDetailsStep: React.FC<NetworkDetailsStepProps> = ({
   onRemoveFile 
 }) => {
   return (
+    <TooltipProvider>
     <div className="space-y-6">
       {/* Network Name Input */}
       <div>
@@ -63,7 +65,16 @@ const NetworkDetailsStep: React.FC<NetworkDetailsStepProps> = ({
             onValueChange={(value) => onInputChange('networkType', value)}
           >
             <SelectTrigger className="h-12 border-gray-200 focus:border-black focus:ring-black">
-              <SelectValue placeholder="Choose network type" />
+              <SelectValue placeholder="Choose network type">
+                {formData.networkType && (
+                  formData.networkType === 'business' ? 'Business Network' :
+                  formData.networkType === 'community' ? 'Community Network' :
+                  formData.networkType === 'professional' ? 'Professional Network' :
+                  formData.networkType === 'social' ? 'Social Network' :
+                  formData.networkType === 'educational' ? 'Educational Network' :
+                  formData.networkType
+                )}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="business">Business Network</SelectItem>
@@ -94,7 +105,14 @@ const NetworkDetailsStep: React.FC<NetworkDetailsStepProps> = ({
             <Label htmlFor="officialNetwork" className="text-sm font-medium text-gray-900">
               This is an official or affiliated Network
             </Label>
-            <Info className="w-4 h-4 text-gray-400" />
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Info className="w-4 h-4 text-gray-400 cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>You agree that you are officially representing the company/organisation you are setting up the network for.</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
           <p className="text-sm text-gray-500 mt-1">
             You agree that you are officially representing the company/organisation you are setting up the network for.
@@ -165,6 +183,7 @@ const NetworkDetailsStep: React.FC<NetworkDetailsStepProps> = ({
         )}
       </div>
     </div>
+    </TooltipProvider>
   );
 };
 
