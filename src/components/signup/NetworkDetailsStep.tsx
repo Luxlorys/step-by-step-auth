@@ -3,6 +3,8 @@ import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 import { Upload, X, Info } from 'lucide-react';
 import { FormData } from '@/types/signup';
 
@@ -21,6 +23,64 @@ const NetworkDetailsStep: React.FC<NetworkDetailsStepProps> = ({
 }) => {
   return (
     <div className="space-y-6">
+      {/* Network Name Input */}
+      <div>
+        <Label htmlFor="networkName" className="text-sm font-medium text-gray-700">
+          Network name
+        </Label>
+        <Input
+          id="networkName"
+          type="text"
+          placeholder="Enter network name"
+          value={formData.networkName}
+          onChange={(e) => onInputChange('networkName', e.target.value)}
+          className="mt-1 h-12 border-gray-200 focus:border-black focus:ring-black"
+        />
+      </div>
+
+      {/* Network Description Input */}
+      <div>
+        <Label htmlFor="networkDescription" className="text-sm font-medium text-gray-700">
+          Network description
+        </Label>
+        <Textarea
+          id="networkDescription"
+          placeholder="Write network description"
+          value={formData.networkDescription}
+          onChange={(e) => onInputChange('networkDescription', e.target.value)}
+          className="mt-1 min-h-[100px] border-gray-200 focus:border-black focus:ring-black resize-none"
+        />
+      </div>
+
+      {/* Network Type Select */}
+      <div>
+        <Label htmlFor="networkType" className="text-sm font-medium text-gray-700">
+          Network type
+        </Label>
+        <div className="relative mt-1">
+          <Select 
+            value={formData.networkType} 
+            onValueChange={(value) => onInputChange('networkType', value)}
+          >
+            <SelectTrigger className="h-12 border-gray-200 focus:border-black focus:ring-black">
+              <SelectValue placeholder="Choose network type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="business">Business Network</SelectItem>
+              <SelectItem value="community">Community Network</SelectItem>
+              <SelectItem value="professional">Professional Network</SelectItem>
+              <SelectItem value="social">Social Network</SelectItem>
+              <SelectItem value="educational">Educational Network</SelectItem>
+            </SelectContent>
+          </Select>
+          {formData.networkType && (
+            <div className="absolute right-12 top-1/2 transform -translate-y-1/2 bg-gray-100 px-2 py-1 rounded text-xs text-gray-600">
+              This is an official or affiliated network. To verify your organization, please provide more data.
+            </div>
+          )}
+        </div>
+      </div>
+
       {/* Official Network Checkbox */}
       <div className="flex items-start space-x-3">
         <Checkbox

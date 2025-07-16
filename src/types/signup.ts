@@ -3,6 +3,9 @@ export interface FormData {
   fullName: string;
   email: string;
   phoneNumber: string;
+  networkName: string;
+  networkDescription: string;
+  networkType: string;
   websiteUrl: string;
   isOfficialNetwork: boolean;
   uploadedFiles: File[];
