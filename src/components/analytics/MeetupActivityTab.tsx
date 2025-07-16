@@ -58,8 +58,8 @@ const MeetupActivityTab: React.FC = () => {
       {/* Meetup Metric Cards Row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Total Meetups */}
-        <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
-          <CardHeader className="pb-2 px-0">
+        <Card className="p-3 bg-[#FCFCFC] border-[#E5E6E8]">
+          <CardHeader className="pb-1 px-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
                 Total meetups
@@ -87,8 +87,8 @@ const MeetupActivityTab: React.FC = () => {
         </Card>
 
         {/* Average Meetup Length */}
-        <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
-          <CardHeader className="pb-2 px-0">
+        <Card className="p-3 bg-[#FCFCFC] border-[#E5E6E8]">
+          <CardHeader className="pb-1 px-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
                 AVG. Meetup length
@@ -116,8 +116,8 @@ const MeetupActivityTab: React.FC = () => {
         </Card>
 
         {/* Cancelled Meetups */}
-        <Card className="p-4 bg-[#FCFCFC] border-[#E5E6E8]">
-          <CardHeader className="pb-2 px-0">
+        <Card className="p-3 bg-[#FCFCFC] border-[#E5E6E8]">
+          <CardHeader className="pb-1 px-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
                 Canceled meetups
