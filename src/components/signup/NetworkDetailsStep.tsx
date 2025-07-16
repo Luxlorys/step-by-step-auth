@@ -84,11 +84,6 @@ const NetworkDetailsStep: React.FC<NetworkDetailsStepProps> = ({
               <SelectItem value="educational">Educational Network</SelectItem>
             </SelectContent>
           </Select>
-          {formData.networkType && (
-            <div className="absolute right-12 top-1/2 transform -translate-y-1/2 bg-gray-100 px-2 py-1 rounded text-xs text-gray-600">
-              This is an official or affiliated network. To verify your organization, please provide more data.
-            </div>
-          )}
         </div>
       </div>
 

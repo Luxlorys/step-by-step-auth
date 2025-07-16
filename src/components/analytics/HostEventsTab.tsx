@@ -86,7 +86,7 @@ const HostEventsTab: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Host Events */}
         <Card className="p-3 bg-[#FCFCFC] border-[#E5E6E8]">
-          <CardHeader className="pb-1 px-0">
+          <CardHeader className="p-0 px-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
                 Host events
@@ -115,7 +115,7 @@ const HostEventsTab: React.FC = () => {
 
         {/* Invitation Acceptance Rate */}
         <Card className="p-3 bg-[#FCFCFC] border-[#E5E6E8]">
-          <CardHeader className="pb-1 px-0">
+          <CardHeader className="p-0 px-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
                 Invitation acceptance rate
@@ -144,7 +144,7 @@ const HostEventsTab: React.FC = () => {
 
         {/* Average Event Rating */}
         <Card className="p-3 bg-[#FCFCFC] border-[#E5E6E8]">
-          <CardHeader className="pb-1 px-0">
+          <CardHeader className="p-0 px-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
                 Avg. event rating

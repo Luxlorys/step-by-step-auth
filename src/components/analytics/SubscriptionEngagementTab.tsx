@@ -48,7 +48,7 @@ const SubscriptionEngagementTab: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Active Subscriptions */}
         <Card className="p-3 bg-[#FCFCFC] border-[#E5E6E8] flex flex-col justify-between">
-          <CardHeader className="pb-1 px-0">
+          <CardHeader className="p-0 px-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-md font-medium text-gray-950 flex items-center gap-2">
                 Active subscriptions
@@ -77,7 +77,7 @@ const SubscriptionEngagementTab: React.FC = () => {
 
         {/* New Subscriptions */}
         <Card className="p-3 bg-[#FCFCFC] border-[#E5E6E8] flex flex-col justify-between">
-          <CardHeader className="pb-1 px-0">
+          <CardHeader className="p-0 px-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-md font-medium text-gray-950">Subscription</CardTitle>
               <Users className="w-5 h-5 text-gray-400" />
@@ -107,7 +107,7 @@ const SubscriptionEngagementTab: React.FC = () => {
 
         {/* Notification CTR */}
         <Card className="p-3 bg-[#FCFCFC] border-[#E5E6E8] flex flex-col justify-between">
-          <CardHeader className="pb-1 px-0">
+          <CardHeader className="p-0 px-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-md font-medium text-gray-950 flex items-center gap-2">
                 Notification CTR
@@ -136,7 +136,7 @@ const SubscriptionEngagementTab: React.FC = () => {
 
         {/* Invitations */}
         <Card className="p-3 bg-[#FCFCFC] border-[#E5E6E8] flex flex-col justify-between">
-          <CardHeader className="pb-1 px-0">
+          <CardHeader className="p-0 px-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-md font-medium text-gray-950 flex items-center gap-2">
                 Invitations
