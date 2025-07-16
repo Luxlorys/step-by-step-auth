@@ -193,7 +193,7 @@ const MultiStepSignup = () => {
         <Card className="shadow-lg border-0">
           <CardHeader className="pb-6">
             <h2 className="text-2xl font-semibold text-center">
-              {currentStep === 6 || currentStep === 7 ? 'Verification' : 'Sign up'}
+              {currentStep === 6 || currentStep === 7 ? '' : 'Sign up'}
             </h2>
           </CardHeader>
           <CardContent className="space-y-6">
