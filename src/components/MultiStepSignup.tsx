@@ -235,7 +235,7 @@ const MultiStepSignup = () => {
             </div>
 
             {/* Terms and Privacy */}
-            {(currentStep === 2 || currentStep === 3 || currentStep === 5) && (
+            {(currentStep === 1 || currentStep === 2 || currentStep === 3 || currentStep === 5) && (
               <p className="text-xs text-gray-500 text-center mt-4">
                 By continuing, you indicate that you've read and agree to our{' '}
                 <span className="underline cursor-pointer">Term of Service</span> and{' '}

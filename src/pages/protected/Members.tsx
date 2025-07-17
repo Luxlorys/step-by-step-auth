@@ -14,15 +14,15 @@ const Members = () => {
   return (
     <div className="bg-white">
       <Tabs defaultValue="inviting" className="w-full" value={activeTab} onValueChange={setActiveTab}>
-        <div className="flex items-center justify-between mb-6">
-          <TabsList className="grid grid-cols-3 max-w-2xl gap-4">
-            <TabsTrigger value="inviting" className="text-sm px-6">
+        <div className="flex items-center justify-between mb-6 gap-6">
+          <TabsList className="grid grid-cols-3 w-full gap-4">
+            <TabsTrigger value="inviting" className="flex-1 text-sm px-6">
               Inviting members
             </TabsTrigger>
-            <TabsTrigger value="requests" className="text-sm px-6">
+            <TabsTrigger value="requests" className="flex-1 text-sm px-6">
               Membership requests
             </TabsTrigger>
-            <TabsTrigger value="all" className="text-sm px-6">
+            <TabsTrigger value="all" className="flex-1 text-sm px-6">
               All members
             </TabsTrigger>
           </TabsList>

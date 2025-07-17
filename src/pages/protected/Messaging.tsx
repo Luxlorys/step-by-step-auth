@@ -374,7 +374,7 @@ const Messaging = () => {
                   <Button
                     variant="outline"
                     onClick={() => setShowDatePicker(!showDatePicker)}
-                    className="flex items-center gap-2"
+                    className="flex-1 flex items-center gap-2"
                   >
                     <Clock className="h-4 w-4" />
                     Schedule
@@ -382,7 +382,7 @@ const Messaging = () => {
                   <Button
                     onClick={handleCreateNotification}
                     disabled={!formType || !formTitle || !formDescription}
-                    className="bg-gray-900 hover:bg-gray-800 text-white"
+                    className="flex-1 bg-gray-900 hover:bg-gray-800 text-white"
                   >
                     Create notification
                   </Button>
@@ -407,27 +407,22 @@ const Messaging = () => {
                     <p className="text-gray-600 text-sm mb-3 line-clamp-3">
                       {notification.description}
                     </p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-blue-600 hover:underline cursor-pointer">
-                        View more
-                      </span>
-                      <div className="flex gap-2">
+                    <div className="flex gap-2">
                         <Button
-                          variant="outline"
-                          size="sm"
-                          className="bg-[#FDF2F2] border-[#E02424] text-[#E02424] hover:bg-[#FDF2F2]/80"
-                          onClick={() => handleDeleteNotification(notification.id)}
-                        >
-                          Delete
-                        </Button>
+                        variant="outline"
+                        size="sm"
+                        className="flex-1 bg-[#FDF2F2] border-[#E02424] text-[#E02424] hover:bg-[#FDF2F2]/80"
+                        onClick={() => handleDeleteNotification(notification.id)}
+                      >
+                        Delete
+                      </Button>
                         <Button
-                          variant="outline"
-                          size="sm"
-                          className="bg-gray-900 text-white hover:bg-gray-800"
-                        >
-                          Edit
-                        </Button>
-                      </div>
+                        variant="outline"
+                        size="sm"
+                        className="flex-1 bg-gray-900 text-white hover:bg-gray-800"
+                      >
+                        Edit
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>

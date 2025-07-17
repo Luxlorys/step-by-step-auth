@@ -31,15 +31,15 @@ const Analytics = () => {
   return (
     <div className="bg-white">
       <Tabs defaultValue="subscription" className="w-full">
-        <div className="flex items-center justify-between mb-6">
-          <TabsList className="grid grid-cols-3 max-w-3xl gap-4">
-            <TabsTrigger value="subscription" className="text-sm px-4">
+        <div className="flex items-center justify-between mb-6 gap-6">
+          <TabsList className="w-full grid grid-cols-3 gap-4">
+            <TabsTrigger value="subscription" className="flex-1 text-sm px-4">
               Subscription & Engagement
             </TabsTrigger>
-            <TabsTrigger value="meetup" className="text-sm px-4">
+            <TabsTrigger value="meetup" className="flex-1 text-sm px-4">
               Meetup activity
             </TabsTrigger>
-            <TabsTrigger value="events" className="text-sm px-4">
+            <TabsTrigger value="events" className="flex-1 text-sm px-4">
               Host events
             </TabsTrigger>
           </TabsList>
